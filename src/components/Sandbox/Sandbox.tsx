@@ -23,8 +23,8 @@ export const Sandbox = () => {
 
   return (
     <Container>
-      <Grid gutter="xl">
-        <Grid.Col span={4}>
+      <Grid gutter="xl" w="100vw">
+        <Grid.Col span={6}>
           <Title order={1}>Login</Title>
           <form
             onSubmit={form.onSubmit(async (values) => {
@@ -50,7 +50,7 @@ export const Sandbox = () => {
             </Group>
           </form>
         </Grid.Col>
-        <Grid.Col span={8}>
+        <Grid.Col span={6}>
           <Title order={1}>Results</Title>
         </Grid.Col>
       </Grid>
