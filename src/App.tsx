@@ -5,7 +5,6 @@ import { MantineProvider } from "@mantine/core";
 import { router } from "./router";
 
 import "@mantine/core/styles.css";
-// import "./App.css";
 
 const queryClient = new QueryClient();
 
