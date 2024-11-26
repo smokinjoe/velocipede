@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { renderToString } from "react-dom/server";
-import App from "./App";
+import App from "./client/App";
 
 export function render() {
   const html = renderToString(

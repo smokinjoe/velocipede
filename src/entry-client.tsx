@@ -1,7 +1,7 @@
-import "./index.css";
+import "./client/index.css";
 import { StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-import App from "./App";
+import App from "./client/App";
 
 hydrateRoot(
   document.getElementById("root") as HTMLElement,
