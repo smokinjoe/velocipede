@@ -1,9 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
 
 import { Vite } from "./components/Vite/Vite";
 import { Sandbox } from "./components/Sandbox/Sandbox";
 
-export const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: <Vite />,
@@ -12,4 +12,9 @@ export const router = createBrowserRouter([
     path: "/sandbox",
     element: <Sandbox />,
   },
-]);
+];
+
+export const router =
+  typeof window === "undefined"
+    ? createMemoryRouter(routes)
+    : createBrowserRouter(routes);
