@@ -1,8 +1,23 @@
 import fs from "node:fs/promises";
 import express from "express";
+import * as dotenv from "dotenv";
+
+const getEnv = () => {
+  const env = process.env.NODE_ENV;
+
+  if (env === undefined) {
+    return "local";
+  }
+
+  return env;
+};
 
 // Constants
-const isProduction = process.env.NODE_ENV === "production";
+const environment = getEnv();
+
+dotenv.config({ path: `.env.${environment}` });
+
+const isProduction = environment === "production";
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || "/";
 
@@ -16,6 +31,60 @@ const ssrManifest = isProduction
 
 // Create http server
 const app = express();
+
+app.post("/auth/login", async (req, res) => {
+  console.log("JOE: req: ", req);
+
+  const username = process.env.PELOTON_USERNAME;
+  const password = process.env.PELOTON_PASSWORD;
+
+  /**
+   * Add logic to get username/password from request body
+   */
+
+  fetch("https://api.onepeloton.com/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username_or_email: username,
+      password,
+      with_pubsub: false,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
+app.get("/test", async (req, res) => {
+  const username = process.env.PELOTON_USERNAME;
+  const password = process.env.PELOTON_PASSWORD;
+
+  fetch("https://api.onepeloton.com/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username_or_email: username,
+      password,
+      with_pubsub: false,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
 
 // Add Vite or respective production middlewares
 let vite;

@@ -1,11 +1,11 @@
 import { StrictMode } from "react";
 import { renderToString } from "react-dom/server";
-import App from "./client/App";
+import { AppContainer } from "./client/AppContainer";
 
 export function render() {
   const html = renderToString(
     <StrictMode>
-      <App />
+      <AppContainer />
     </StrictMode>
   );
   return { html };
