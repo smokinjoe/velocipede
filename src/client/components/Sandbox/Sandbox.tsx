@@ -28,7 +28,6 @@ export const Sandbox = () => {
           <Title order={1}>Login</Title>
           <form
             onSubmit={form.onSubmit(async (values) => {
-              console.log(values);
               login({ username: values.email, password: values.password });
             })}
           >

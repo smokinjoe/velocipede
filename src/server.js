@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import express from "express";
 import * as dotenv from "dotenv";
+import bodyParser from "body-parser";
 
 const getEnv = () => {
   const env = process.env.NODE_ENV;
@@ -32,33 +33,34 @@ const ssrManifest = isProduction
 // Create http server
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.post("/auth/login", async (req, res) => {
-  console.log("JOE: req: ", req);
+  const { username_or_email, password } = req.body;
 
-  const username = process.env.PELOTON_USERNAME;
-  const password = process.env.PELOTON_PASSWORD;
-
-  /**
-   * Add logic to get username/password from request body
-   */
+  const body = {
+    username_or_email:
+      username_or_email === ""
+        ? process.env.PELOTON_USERNAME
+        : username_or_email,
+    password: password === "" ? process.env.PELOTON_PASSWORD : password,
+    with_pubsub: false,
+  };
 
   fetch("https://api.onepeloton.com/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      username_or_email: username,
-      password,
-      with_pubsub: false,
-    }),
+    body: JSON.stringify(body),
   })
     .then((response) => response.json())
     .then((data) => {
+      /**
+       * even if I get an error response, it still hits this .then()
+       */
       res.send(data);
-    })
-    .catch((error) => {
-      res.send(error);
     });
 });
 
