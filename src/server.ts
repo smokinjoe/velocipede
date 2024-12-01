@@ -1,43 +1,16 @@
-import fs from "node:fs/promises";
 import express from "express";
 import * as dotenv from "dotenv";
 import bodyParser from "body-parser";
-import { ViteDevServer } from "vite";
 
-const getEnv = () => {
-  const env = process.env.NODE_ENV;
+import { getEnv } from "./server/utils/getEnv";
+import { initReactEntry } from "./server/middleware/initReactEntry";
 
-  if (env === undefined) {
-    return "local";
-  }
-
-  return env;
-};
-
-// Constants
 const environment = getEnv();
+const port = process.env.PORT || 5173;
 
 dotenv.config({ path: `.env.${environment}` });
 
-const isProduction = environment === "production";
-const port = process.env.PORT || 5173;
-const base = process.env.BASE || "/";
-
-// Create http server
 const app = express();
-
-let templateHtml: string | undefined;
-let ssrManifest: string | undefined;
-
-(async function () {
-  // Cached production assets
-  templateHtml = isProduction
-    ? await fs.readFile("./dist/client/index.html", "utf-8")
-    : "";
-  ssrManifest = isProduction
-    ? await fs.readFile("./dist/client/.vite/ssr-manifest.json", "utf-8")
-    : undefined;
-})();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -70,86 +43,8 @@ app.post("/auth/login", async (req, res) => {
     });
 });
 
-app.get("/test", async (req, res) => {
-  const username = process.env.PELOTON_USERNAME;
-  const password = process.env.PELOTON_PASSWORD;
-
-  fetch("https://api.onepeloton.com/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username_or_email: username,
-      password,
-      with_pubsub: false,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
-
-// Add Vite or respective production middlewares
-let vite: ViteDevServer | undefined;
-
-(async function () {
-  if (!isProduction) {
-    const { createServer } = await import("vite");
-    vite = await createServer({
-      server: { middlewareMode: true },
-      appType: "custom",
-      base,
-    });
-    app.use(vite.middlewares);
-  } else {
-    const compression = (await import("compression")).default;
-    const sirv = (await import("sirv")).default;
-    app.use(compression());
-    app.use(base, sirv("./dist/client", { extensions: [] }));
-  }
-
-  /**
-   * This app.use middleware block has to exist within the IIFE otherwise I can't serve the html
-   * correctly. My belief is that the app can't find the index.html if it is outside of the IIFE.
-   */
-  // Serve HTML
-  app.use("*all", async (req, res) => {
-    try {
-      const url = req.originalUrl.replace(base, "");
-
-      let template;
-      let render;
-      if (!isProduction && vite) {
-        // Always read fresh template in development
-        template = await fs.readFile("./index.html", "utf-8");
-        template = await vite.transformIndexHtml(url, template);
-        render = (await vite.ssrLoadModule("/src/entry-server.tsx")).render;
-      } else {
-        template = templateHtml;
-        render = (await import("./dist/server/entry-server.js"!)).render;
-      }
-
-      const rendered = await render(url, ssrManifest);
-
-      const html = template!
-        .replace(`<!--app-head-->`, rendered.head ?? "")
-        .replace(`<!--app-html-->`, rendered.html ?? "");
-
-      res.status(200).set({ "Content-Type": "text/html" }).send(html);
-    } catch (e) {
-      // TODO: remove the as Errors
-      const error = e as Error;
-      vite?.ssrFixStacktrace(error);
-      console.log(error.stack);
-      res.status(500).end(error.stack);
-    }
-  });
-})();
+// This is one of the final steps in the server setup due to the *all route
+initReactEntry(app);
 
 // Start http server
 app.listen(port, () => {
