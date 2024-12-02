@@ -8,7 +8,9 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import { useLogin, useMe } from "../../hooks/usePelotonQueries";
+import { useLogin } from "../../hooks/usePelotonQueries";
+import { Me } from "./Me";
+import { Workouts } from "./Workouts";
 
 export const Sandbox = () => {
   const form = useForm({
@@ -20,7 +22,6 @@ export const Sandbox = () => {
   });
 
   const { mutate: login, userSession } = useLogin();
-  const { data } = useMe(userSession);
 
   return (
     <Container>
@@ -46,16 +47,23 @@ export const Sandbox = () => {
             /> */}
 
             <Group justify="flex-end" mt="md">
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Login</Button>
             </Group>
           </form>
         </Grid.Col>
         <Grid.Col span={9}>
           <Title order={1}>Session Data</Title>
           <pre>{JSON.stringify(userSession, null, 2)}</pre>
-          <Title order={1}>Me Data</Title>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
         </Grid.Col>
+        <Me
+          sessionId={userSession.session_id}
+          isLoggedIn={userSession.isLoggedIn}
+        />
+        <Workouts
+          userId={userSession.user_id}
+          isLoggedIn={userSession.isLoggedIn}
+          sessionId={userSession.session_id}
+        />
       </Grid>
     </Container>
   );

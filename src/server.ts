@@ -1,6 +1,7 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 import { getEnv } from "./server/utils/getEnv";
 import { initReactEntry } from "./server/middleware/initReactEntry";
@@ -16,6 +17,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use("/", routes);
 

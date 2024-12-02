@@ -13,16 +13,27 @@ export const login = async (username: string, password: string) => {
       headers: {
         "Content-Type": "application/json",
       },
+      withCredentials: true, // TODO: Remove if unnecessary
     }
   );
   return response.data;
 };
 
-export const me = async () => {
-  const response = await getInternalApiClient().get("/api/me", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export const me = async (session_id?: string) => {
+  const response = await getInternalApiClient().get(
+    `/api/me?session_id=${session_id}`,
+    {
+      headers: {
+        "content-Type": "application/json",
+      },
+    }
+  );
+  return response.data;
+};
+
+export const workouts = async (user_id?: string, session_id?: string) => {
+  const response = await getInternalApiClient().get(
+    `/api/workouts?user_id=${user_id}&session_id=${session_id}`
+  );
   return response.data;
 };

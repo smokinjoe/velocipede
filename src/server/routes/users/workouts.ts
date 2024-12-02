@@ -2,8 +2,8 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/me", async (req, res) => {
-  fetch("https://api.onepeloton.com/api/me", {
+router.get("/workouts", async (req, res) => {
+  fetch(`https://api.onepeloton.com/api/user/${req.query.user_id}/workouts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

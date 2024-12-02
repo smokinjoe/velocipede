@@ -14,20 +14,26 @@ router.post("/login", async (req, res) => {
     with_pubsub: false,
   };
 
-  fetch("https://api.onepeloton.com/auth/login", {
+  const response = await fetch("https://api.onepeloton.com/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      /**
-       * even if I get an error response, it still hits this .then()
-       */
-      res.send(data);
+  });
+
+  // TODO: Handle response better
+  if (response.ok) {
+    const data = await response.json();
+    const cookies = response.headers.get("set-cookie");
+    if (cookies) {
+      res.setHeader("Set-Cookie", cookies);
+    }
+    res.send({
+      ...data,
+      cookies,
     });
+  }
 });
 
 export default router;
