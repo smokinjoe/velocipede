@@ -17,3 +17,12 @@ export const login = async (username: string, password: string) => {
   );
   return response.data;
 };
+
+export const me = async () => {
+  const response = await getInternalApiClient().get("/api/me", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.data;
+};
