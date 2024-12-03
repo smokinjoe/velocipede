@@ -1,9 +1,9 @@
 import { useAtom } from "jotai";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { userSessionAtom } from "../atoms/UserSession";
+import { userSessionAtom } from "../atoms/userSession";
 import { login, me, workouts } from "../services/pelotonService";
-import { LoggedInUserSession } from "../atoms/UserSession";
+import { LoggedInUserSession } from "../atoms/userSession";
 
 export const useLogin = () => {
   const [userSession, setUserSession] =

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { Grid, Title, Button } from "@mantine/core";
 import { useMe } from "../../hooks/usePelotonQueries";
-import { userSessionAtom } from "../../atoms/UserSession";
+import { userSessionAtom } from "../../atoms/userSession";
 
 export const Me = () => {
   const [fetch, toggleFetch] = useState(false);
