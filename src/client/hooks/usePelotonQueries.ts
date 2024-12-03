@@ -3,11 +3,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { userSessionAtom } from "../atoms/userSession";
 import { login, me, workouts } from "../services/pelotonService";
-import { LoggedInUserSession } from "../atoms/userSession";
+import { UserSession } from "../../common/types/UserSession";
 
 export const useLogin = () => {
-  const [userSession, setUserSession] =
-    useAtom<LoggedInUserSession>(userSessionAtom);
+  const [userSession, setUserSession] = useAtom<UserSession>(userSessionAtom);
 
   const mutation = useMutation({
     mutationFn: async (credentials: { username: string; password: string }) =>
@@ -23,22 +22,18 @@ export const useLogin = () => {
   };
 };
 
-export const useMe = ({ isLoggedIn, session_id }: LoggedInUserSession) => {
+export const useMe = ({ isLoggedIn, sessionId }: UserSession) => {
   return useQuery({
     queryKey: ["me"],
     enabled: isLoggedIn,
-    queryFn: async () => await me(session_id),
+    queryFn: async () => await me(sessionId),
   });
 };
 
-export const useWorkouts = ({
-  isLoggedIn,
-  user_id,
-  session_id,
-}: LoggedInUserSession) => {
+export const useWorkouts = ({ isLoggedIn, userId, sessionId }: UserSession) => {
   return useQuery({
     queryKey: ["workouts"],
     enabled: isLoggedIn,
-    queryFn: async () => await workouts(user_id, session_id),
+    queryFn: async () => await workouts(userId, sessionId),
   });
 };

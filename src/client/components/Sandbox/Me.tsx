@@ -8,11 +8,11 @@ export const Me = () => {
   const [fetch, toggleFetch] = useState(false);
 
   const [userSession] = useAtom(userSessionAtom);
-  const { isLoggedIn, session_id: sessionId } = userSession;
+  const { isLoggedIn, sessionId } = userSession;
 
   const { data } = useMe({
     isLoggedIn: isLoggedIn && fetch,
-    session_id: sessionId,
+    sessionId,
   });
 
   return (

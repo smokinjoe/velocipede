@@ -19,9 +19,9 @@ export const login = async (username: string, password: string) => {
   return response.data;
 };
 
-export const me = async (session_id?: string) => {
+export const me = async (sessionId?: string) => {
   const response = await getInternalApiClient().get(
-    `/api/me?session_id=${session_id}`,
+    `/api/me?session_id=${sessionId}`,
     {
       headers: {
         "content-Type": "application/json",
@@ -31,9 +31,9 @@ export const me = async (session_id?: string) => {
   return response.data;
 };
 
-export const workouts = async (user_id?: string, session_id?: string) => {
+export const workouts = async (userId?: string, sessionId?: string) => {
   const response = await getInternalApiClient().get(
-    `/api/workouts?user_id=${user_id}&session_id=${session_id}`
+    `/api/workouts?user_id=${userId}&session_id=${sessionId}`
   );
   return response.data;
 };

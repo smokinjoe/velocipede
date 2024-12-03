@@ -7,11 +7,11 @@ import { userSessionAtom } from "../../atoms/userSession";
 export const Workouts = () => {
   const [fetch, toggleFetch] = useState(false);
   const [userSession] = useAtom(userSessionAtom);
-  const { isLoggedIn, session_id: sessionId, user_id: userId } = userSession;
+  const { isLoggedIn, sessionId, userId } = userSession;
   const { data } = useWorkouts({
     isLoggedIn: isLoggedIn && fetch,
-    user_id: userId,
-    session_id: sessionId,
+    userId,
+    sessionId,
   });
 
   return (
