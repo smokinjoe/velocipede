@@ -1,50 +1,13 @@
-# React + TypeScript + Vite
+## ve·loc·i·pede
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+/vəˈläsəˌpēd/  
+An early form of bicycle propelled by working pedals on cranks fitted to the front axle.
 
-Currently, two official plugins are available:
+## Internal API hobby project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This hobby project features an Express backend that both serves the html page that serves as the entry-point for a React application, but also is able to make requests against the Peloton API. The Express backend will serve as a seam where the Peloton models will be transformed into something the React frontend can better consume, display, and just have some fun with.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The project also features,
+* a Mantine UI component-driven UX
+* jotai state manager to contain the user session data needed to make API requests
+* react query to manage server state
