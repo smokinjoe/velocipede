@@ -1,19 +1,13 @@
-import { useState } from "react";
+import { useAtom } from "jotai";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
+import { userSessionAtom } from "../atoms/UserSession";
 import { login, me, workouts } from "../services/pelotonService";
-
-type LoggedInUserSession = {
-  session_id?: string;
-  user_id?: string;
-  cookies?: string;
-  isLoggedIn: boolean;
-};
+import { LoggedInUserSession } from "../atoms/UserSession";
 
 export const useLogin = () => {
-  const [userSession, setUserSession] = useState<LoggedInUserSession>({
-    isLoggedIn: false,
-  });
+  const [userSession, setUserSession] =
+    useAtom<LoggedInUserSession>(userSessionAtom);
 
   const mutation = useMutation({
     mutationFn: async (credentials: { username: string; password: string }) =>
