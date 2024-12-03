@@ -1,15 +1,13 @@
 import { useState } from "react";
+import { useAtom } from "jotai";
 import { Grid, Title, Button } from "@mantine/core";
 import { useWorkouts } from "../../hooks/usePelotonQueries";
+import { userSessionAtom } from "../../atoms/UserSession";
 
-type MeProps = {
-  userId?: string;
-  sessionId?: string;
-  isLoggedIn: boolean;
-};
-
-export const Workouts = ({ userId, sessionId, isLoggedIn }: MeProps) => {
+export const Workouts = () => {
   const [fetch, toggleFetch] = useState(false);
+  const [userSession] = useAtom(userSessionAtom);
+  const { isLoggedIn, session_id: sessionId, user_id: userId } = userSession;
   const { data } = useWorkouts({
     isLoggedIn: isLoggedIn && fetch,
     user_id: userId,
