@@ -1,5 +1,5 @@
 import { Response as ExpressResponse } from "express";
-import { ErrorsMap } from "../types/VelocipedeError";
+import { errorMap, VelocipedeError } from "../types/VelocipedeError";
 import { PelotonError } from "../types/PelotonError";
 
 export const handleResponse = async <APIData, VeloData>(
@@ -11,19 +11,18 @@ export const handleResponse = async <APIData, VeloData>(
 
   if (apiResponse.ok) {
     response.send({
-      statusCode: apiResponse.status,
-      payload: mapData(jsonData),
+      ...mapData(jsonData),
     });
   } else {
     const error = jsonData as PelotonError;
-    const responseError = new ErrorsMap[error.status as keyof typeof ErrorsMap](
-      error.message
-    );
-    console.log(responseError);
+    const ErrorConstructor = errorMap.get(error.status) ?? VelocipedeError;
+    const responseError = new ErrorConstructor(error.message);
     response.status(apiResponse.status).send({
-      ...responseError,
-      // Not entirely sure why I have to explicitly include this message property
-      message: responseError.message,
+      error: {
+        ...responseError,
+        // Not entirely sure why I have to explicitly include this message property
+        message: responseError.message,
+      },
     });
   }
 };

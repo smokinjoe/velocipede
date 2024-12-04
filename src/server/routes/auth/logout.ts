@@ -1,11 +1,12 @@
 import express from "express";
+import { handleResponse } from "../../utils/handleResponse";
 
 const router = express.Router();
 
 router.post("/logout", async (req, res) => {
   const { sessionId } = req.body;
 
-  fetch("https://api.onepeloton.com/auth/logout", {
+  const response = await fetch("https://api.onepeloton.com/auth/logout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -13,14 +14,9 @@ router.post("/logout", async (req, res) => {
     body: JSON.stringify({
       session_id: sessionId,
     }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      /**
-       * even if I get an error response, it still hits this .then()
-       */
-      res.send(data);
-    });
+  });
+
+  handleResponse(res, response, (data) => data);
 });
 
 export default router;

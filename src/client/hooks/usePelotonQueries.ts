@@ -12,7 +12,7 @@ export const useLogin = () => {
     mutationFn: async (credentials: { username: string; password: string }) =>
       await login(credentials.username, credentials.password),
     onSuccess: (response) => {
-      setUserSession({ ...response.payload });
+      setUserSession({ ...response });
     },
   });
 

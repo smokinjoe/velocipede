@@ -16,6 +16,7 @@ export const login = async (username: string, password: string) => {
       withCredentials: true, // TODO: Remove if unnecessary
     }
   );
+
   return response.data;
 };
 

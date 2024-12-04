@@ -46,9 +46,9 @@ export class UnauthorizedError extends VelocipedeError {
   }
 }
 
-export const ErrorsMap = {
-  500: VelocipedeError,
-  400: ValidationError,
-  404: NotFoundError,
-  401: UnauthorizedError,
-};
+export const errorMap = new Map<number, typeof VelocipedeError>([
+  [500, VelocipedeError],
+  [400, ValidationError],
+  [404, NotFoundError],
+  [401, UnauthorizedError],
+]);

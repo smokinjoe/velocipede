@@ -1,21 +1,20 @@
 import express from "express";
+import { handleResponse } from "../../utils/handleResponse";
 
 const router = express.Router();
 
 router.post("/checkSession", async (req, res) => {
-  fetch("https://api.onepeloton.com/auth/check_session", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      /**
-       * even if I get an error response, it still hits this .then()
-       */
-      res.send(data);
-    });
+  const response = await fetch(
+    "https://api.onepeloton.com/auth/check_session",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  handleResponse(res, response, (data) => data);
 });
 
 export default router;
