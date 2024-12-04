@@ -1,13 +1,5 @@
 export type PelotonError = {
-  details: string;
-  error_code: number;
+  error_code: number; // Unused
   message: string;
   status: number;
-  subcode: number;
 };
-
-// details: null;
-// error_code: 3010;
-// message: "Login failed";
-// status: 401;
-// subcode: null;
