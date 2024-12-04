@@ -1,4 +1,7 @@
 import express from "express";
+import { handleResponse } from "../../utils/handleResponse";
+import { PelotonUserSession } from "../../types/PelotonUserSession";
+import { UserSession } from "../../../common/types/UserSession";
 
 const router = express.Router();
 
@@ -22,18 +25,13 @@ router.post("/login", async (req, res) => {
     body: JSON.stringify(body),
   });
 
-  // TODO: Handle response better
-  if (response.ok) {
-    const data = await response.json();
-    const cookies = response.headers.get("set-cookie");
-    if (cookies) {
-      res.setHeader("Set-Cookie", cookies);
-    }
-    res.send({
-      ...data,
-      cookies,
-    });
-  }
+  const cookies = response.headers.get("set-cookie");
+  handleResponse<PelotonUserSession, UserSession>(res, response, (data) => ({
+    userId: data.user_id,
+    sessionId: data.session_id,
+    isLoggedIn: true,
+    cookies,
+  }));
 });
 
 export default router;
