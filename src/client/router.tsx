@@ -1,11 +1,22 @@
 import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
 
 import { Sandbox } from "./screens/Sandbox";
+import { Layout } from "./Layout";
+import { Login } from "./screens/Login/Login";
 
-const routes = [
+export const routes = [
   {
-    path: "/",
-    element: <Sandbox />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Sandbox />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
   },
 ];
 

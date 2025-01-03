@@ -5,7 +5,7 @@ import { useLogin } from "../../hooks/usePelotonQueries";
 import { useUserSession } from "../../hooks/useUserSession";
 
 export const Login = () => {
-  const { userSession } = useUserSession();
+  const { userSession, clearSession } = useUserSession();
 
   const form = useForm({
     mode: "uncontrolled",
@@ -28,6 +28,9 @@ export const Login = () => {
         >
           <Group justify="flex-end" mt="md">
             <Button type="submit">Login</Button>
+            <Button type="button" onClick={clearSession}>
+              Logout
+            </Button>
           </Group>
         </form>
       </Grid.Col>
