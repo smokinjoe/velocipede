@@ -30,17 +30,17 @@ export const Login = () => {
           })}
         >
           {/* <TextInput
-              label="email"
-              key={form.key("email")}
-              {...form.getInputProps("email")}
-            />
+            label="email"
+            key={form.key("email")}
+            {...form.getInputProps("email")}
+          />
 
-            <TextInput
-              label="password"
-              type="password"
-              key={form.key("password")}
-              {...form.getInputProps("password")}
-            /> */}
+          <TextInput
+            label="password"
+            type="password"
+            key={form.key("password")}
+            {...form.getInputProps("password")}
+          /> */}
 
           <Group justify="flex-end" mt="md">
             <Button type="submit">Login</Button>
