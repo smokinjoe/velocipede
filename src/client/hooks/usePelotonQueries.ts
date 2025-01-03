@@ -1,12 +1,12 @@
-import { useAtom } from "jotai";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { userSessionAtom } from "../atoms/userSession";
+import { useUserSession } from "./useUserSession";
+
 import { login, me, workouts } from "../services/pelotonService";
 import { UserSession } from "../../common/types/UserSession";
 
 export const useLogin = () => {
-  const [userSession, setUserSession] = useAtom<UserSession>(userSessionAtom);
+  const { setUserSession } = useUserSession();
 
   const mutation = useMutation({
     mutationFn: async (credentials: { username: string; password: string }) =>
@@ -18,7 +18,6 @@ export const useLogin = () => {
 
   return {
     ...mutation,
-    userSession,
   };
 };
 

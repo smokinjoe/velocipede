@@ -1,15 +1,12 @@
-import {
-  Grid,
-  Title,
-  Button,
-  // TextInput,
-  Group,
-} from "@mantine/core";
+import { Grid, Title, Button, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
 import { useLogin } from "../../hooks/usePelotonQueries";
+import { useUserSession } from "../../hooks/useUserSession";
 
 export const Login = () => {
+  const { userSession } = useUserSession();
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -18,7 +15,7 @@ export const Login = () => {
     },
   });
 
-  const { mutate: login, userSession } = useLogin();
+  const { mutate: login } = useLogin();
 
   return (
     <>
@@ -29,19 +26,6 @@ export const Login = () => {
             login({ username: values.email, password: values.password });
           })}
         >
-          {/* <TextInput
-            label="email"
-            key={form.key("email")}
-            {...form.getInputProps("email")}
-          />
-
-          <TextInput
-            label="password"
-            type="password"
-            key={form.key("password")}
-            {...form.getInputProps("password")}
-          /> */}
-
           <Group justify="flex-end" mt="md">
             <Button type="submit">Login</Button>
           </Group>
