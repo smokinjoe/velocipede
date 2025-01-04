@@ -1,16 +1,22 @@
 import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
 
-import { Vite } from "./components/Vite/Vite";
-import { Sandbox } from "./components/Sandbox/Sandbox";
+import { Sandbox } from "./screens/Sandbox";
+import { Layout } from "./Layout";
+import { Login } from "./screens/Login/Login";
 
-const routes = [
+export const routes = [
   {
-    path: "/",
-    element: <Vite />,
-  },
-  {
-    path: "/sandbox",
-    element: <Sandbox />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Sandbox />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
   },
 ];
 

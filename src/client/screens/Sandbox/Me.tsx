@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { Grid, Title, Button } from "@mantine/core";
+import { Button } from "../../components/ui/Button";
+
 import { useMe } from "../../hooks/usePelotonQueries";
 import { userSessionAtom } from "../../atoms/userSession";
 
@@ -17,14 +18,14 @@ export const Me = () => {
 
   return (
     <>
-      <Grid.Col span={3}>
+      <div className="col-span-2">
         <Button onClick={() => toggleFetch(!fetch)}>Fetch Me</Button>
         <Button onClick={() => toggleFetch(false)}>Show/Hide</Button>
-      </Grid.Col>
-      <Grid.Col span={9}>
-        <Title order={1}>Me Data</Title>
+      </div>
+      <div className="col-span-4">
+        <div className="text-3xl">Me Data</div>
         {fetch ? <pre>{JSON.stringify(data, null, 2)}</pre> : null}
-      </Grid.Col>
+      </div>
     </>
   );
 };
