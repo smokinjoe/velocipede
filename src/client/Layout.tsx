@@ -1,21 +1,25 @@
-import { Link, Outlet } from "react-router-dom";
-import { Container, Grid, Space } from "@mantine/core";
+import { Outlet } from "react-router-dom";
+
+import { Link } from "./components/ui/Link";
 
 export function Layout() {
   return (
-    <Container>
-      <Grid gutter="xl" w="100vw">
-        <Grid.Col span={1}>
-          <Link to="/">Sandbox</Link>
-        </Grid.Col>
-        <Grid.Col span={1}>
-          <Link to="/login">Login</Link>
-        </Grid.Col>
-      </Grid>
-      <Space h="xl" />
-      <Grid gutter="xl" w="100vw">
+    <div className="container mx-auto">
+      <div className="grid p-4 grid-cols-6">
+        <nav>
+          <ul className="flex">
+            <li className="mr-6">
+              <Link to="/">Sandbox</Link>
+            </li>
+            <li className="mr-6">
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div className="grid grid-cols-6 p-4 gap-4">
         <Outlet />
-      </Grid>
-    </Container>
+      </div>
+    </div>
   );
 }

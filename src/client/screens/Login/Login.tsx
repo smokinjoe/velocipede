@@ -1,8 +1,8 @@
-import { Grid, Title, Button, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import { useLogin } from "../../hooks/usePelotonQueries";
-import { useUserSession } from "../../hooks/useUserSession";
+import { useLogin } from "client/hooks/usePelotonQueries";
+import { useUserSession } from "client/hooks/useUserSession";
+import { Button } from "client/components/ui/Button";
 
 export const Login = () => {
   const { userSession, clearSession } = useUserSession();
@@ -19,25 +19,23 @@ export const Login = () => {
 
   return (
     <>
-      <Grid.Col span={3}>
-        <Title order={1}>Actions</Title>
+      <div className="col-span-2">
+        <div className="text-3xl">Actions</div>
         <form
           onSubmit={form.onSubmit(async (values) => {
             login({ username: values.email, password: values.password });
           })}
         >
-          <Group justify="flex-end" mt="md">
-            <Button type="submit">Login</Button>
-            <Button type="button" onClick={clearSession}>
-              Logout
-            </Button>
-          </Group>
+          <Button type="submit">Login</Button>
+          <Button type="button" onClick={clearSession}>
+            Logout
+          </Button>
         </form>
-      </Grid.Col>
-      <Grid.Col span={9}>
-        <Title order={1}>Session Data</Title>
+      </div>
+      <div className="col-span-4">
+        <div className="text-3xl">Session Data</div>
         <pre>{JSON.stringify(userSession, null, 2)}</pre>
-      </Grid.Col>
+      </div>
     </>
   );
 };
