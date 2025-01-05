@@ -4,6 +4,7 @@ import { Button } from "../../components/ui/Button";
 
 import { useMe } from "../../hooks/usePelotonQueries";
 import { userSessionAtom } from "../../atoms/userSession";
+import { Loading } from "@/client/components/ui/Loading";
 
 export const Me = () => {
   const [fetch, toggleFetch] = useState(false);
@@ -11,10 +12,14 @@ export const Me = () => {
   const [userSession] = useAtom(userSessionAtom);
   const { isLoggedIn, sessionId } = userSession;
 
-  const { data } = useMe({
+  const { data, isLoading } = useMe({
     isLoggedIn: isLoggedIn && fetch,
     sessionId,
   });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

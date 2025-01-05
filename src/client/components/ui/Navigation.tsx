@@ -15,8 +15,11 @@ export const Navigation = () => {
           <Link className="inline-block mt-0 mr-4" to="/login">
             Login
           </Link>
-          <Link className="inline-block mt-0 mr-4" to="/">
-            Sandbox
+          <Link className="inline-block mt-0 mr-4" to="/me">
+            Me
+          </Link>
+          <Link className="inline-block mt-0 mr-4" to="/workouts">
+            Workouts
           </Link>
         </div>
       </div>
