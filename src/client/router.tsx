@@ -10,6 +10,10 @@ export const routes = [
     element: <Layout />,
     children: [
       {
+        path: "/",
+        element: <Login />,
+      },
+      {
         path: "/workouts",
         element: <Workouts />,
       },

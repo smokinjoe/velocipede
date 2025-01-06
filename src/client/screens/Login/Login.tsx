@@ -24,7 +24,7 @@ export const Login = () => {
 
   return (
     <>
-      <div className="col-span-2">
+      <div className="col-span-3">
         <div className="text-3xl">Actions</div>
         <form
           onSubmit={form.onSubmit(async (values) => {
@@ -37,7 +37,7 @@ export const Login = () => {
           </Button>
         </form>
       </div>
-      <div className="col-span-4">
+      <div className="col-span-9">
         <div className="text-3xl">Session Data</div>
         <pre>{JSON.stringify(userSession, null, 2)}</pre>
       </div>

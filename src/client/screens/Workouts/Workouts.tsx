@@ -1,18 +1,17 @@
-import { useState } from "react";
-import { useAtom } from "jotai";
-import { Button } from "../../components/ui/Button";
+import { useUserSession } from "@/client/hooks/useUserSession";
 
 import { useWorkouts } from "../../hooks/usePelotonQueries";
-import { userSessionAtom } from "../../atoms/userSession";
 import { Loading } from "@/client/components/ui/Loading";
+import { Table } from "@/client/components/ui/Table";
+import { PropTypeList } from "@/client/components/dev/PropTypeList";
 
 export const Workouts = () => {
-  const [fetch, toggleFetch] = useState(false);
-  const [userSession] = useAtom(userSessionAtom);
+  const { userSession } = useUserSession();
+
   const { isLoggedIn, sessionId, userId } = userSession;
 
   const { data, isLoading } = useWorkouts({
-    isLoggedIn: isLoggedIn && fetch,
+    isLoggedIn: isLoggedIn,
     userId,
     sessionId,
   });
@@ -21,16 +20,16 @@ export const Workouts = () => {
     return <Loading />;
   }
 
+  if (!data) {
+    return <div>There was an error fetching your data</div>;
+  }
+
+  const { data: workoutData } = data;
   return (
     <>
-      <div className="col-span-2">
-        <Button onClick={() => toggleFetch(!fetch)}>Fetch workouts</Button>
-        <Button onClick={() => toggleFetch(false)}>Show/Hide</Button>
-      </div>
-      <div className="col-span-4">
-        <div className="text-3xl">Workouts Data</div>
-        {fetch ? <pre>{JSON.stringify(data, null, 2)}</pre> : null}
-      </div>
+      <div className="text-3xl col-span-12">Workouts Data</div>
+      {/* <Table data={workoutData} /> */}
+      <PropTypeList data={data} />
     </>
   );
 };
