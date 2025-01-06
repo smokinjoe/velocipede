@@ -3,7 +3,6 @@ import { useUserSession } from "@/client/hooks/useUserSession";
 import { useWorkouts } from "../../hooks/usePelotonQueries";
 import { Loading } from "@/client/components/ui/Loading";
 import { Table } from "@/client/components/ui/Table";
-import { PropTypeList } from "@/client/components/dev/PropTypeList";
 
 export const Workouts = () => {
   const { userSession } = useUserSession();
@@ -24,12 +23,12 @@ export const Workouts = () => {
     return <div>There was an error fetching your data</div>;
   }
 
-  const { data: workoutData } = data;
+  const { workouts: workoutData } = data;
+
   return (
     <>
       <div className="text-3xl col-span-12">Workouts Data</div>
-      {/* <Table data={workoutData} /> */}
-      <PropTypeList data={data} />
+      <Table data={workoutData} />
     </>
   );
 };

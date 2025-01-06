@@ -1,5 +1,6 @@
 import express from "express";
 import { handleResponse } from "../../utils/handleResponse";
+import { workoutMapper } from "../../mappers/workoutMapper";
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get("/workouts", async (req, res) => {
       },
     }
   );
-  handleResponse(res, response, (data) => data);
+  handleResponse(res, response, workoutMapper);
 });
 
 export default router;

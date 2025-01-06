@@ -26,7 +26,7 @@ const TableRow = ({
   const body = keys.map((key, index) => {
     return (
       <td key={`${key}-${index}`} className="border px-4 py-2">
-        {data[key]}
+        {JSON.stringify(data[key], null, 2)}
       </td>
     );
   });
