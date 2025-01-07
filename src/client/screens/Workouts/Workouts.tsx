@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 import { Loading } from "@/client/components/ui/Loading";
-import { Table } from "@/client/components/ui/Table";
 
 import { useUserSession } from "@/client/hooks/useUserSession";
 import { useWorkouts } from "@/client/hooks/usePelotonQueries";
+import { WorkoutsTable } from "./WorkoutsTable";
+import { WorkoutsSummary } from "./WorkoutsSummary";
 
 const Views = {
   workouts: "workouts",
@@ -14,6 +15,9 @@ const Views = {
 type ViewType = (typeof Views)[keyof typeof Views];
 
 export const Workouts = () => {
+  const [page, setPage] = useState(0);
+  const [limit, setLimit] = useState(20);
+  const [formLimit, setFormLimit] = useState(limit);
   const [view, setView] = useState<ViewType>(Views.workouts);
   const { userSession } = useUserSession();
 
@@ -23,6 +27,8 @@ export const Workouts = () => {
     isLoggedIn: isLoggedIn,
     userId,
     sessionId,
+    page,
+    limit,
   });
 
   const handleViewChange = (view: ViewType) => {
@@ -60,38 +66,48 @@ export const Workouts = () => {
     };
   });
 
-  // Monthly summary
-  const monthlySummary: Array<{
-    date: string;
-    count: number;
-  }> = [];
-  for (const month in data.summary) {
-    const dateObj = new Date(month);
-    const options: Intl.DateTimeFormatOptions = {
-      year: "numeric",
-      month: "long",
-    };
-    const formattedDate = dateObj.toLocaleString("en-US", options);
+  const renderWorkoutsTable = () => {
+    return (
+      <>
+        <form className="w-full max-w-52 col-span-12">
+          <div className="flex items-center border-b border-slate-500 py-2">
+            <input
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              type="text"
+              aria-label="Full name"
+              id="limit-input"
+              value={formLimit}
+              onChange={(e) => setFormLimit(Number(e.target.value))}
+            />
+            <button
+              className="flex-shrink-0 bg-slate-500 hover:bg-slate-700 border-slate-500 hover:border-slate-700 text-sm border-4 text-white py-1 px-2 rounded"
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                setLimit(formLimit);
+              }}
+            >
+              Update
+            </button>
+            <button
+              className="flex-shrink-0 border-transparent border-4 text-slate-500 hover:text-slate-800 text-sm py-1 px-2 rounded"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setLimit(20);
+                setFormLimit(20);
+              }}
+            >
+              Reset
+            </button>
+          </div>
+        </form>
 
-    monthlySummary.push({
-      date: formattedDate,
-      count: data.summary[month],
-    });
-  }
-
-  const renderWorkoutsView = () => (
-    <>
-      <div className="text-3xl col-span-12">Workouts Data</div>
-      <Table data={parsedWorkoutsData} />
-    </>
-  );
-
-  const renderSummaryView = () => (
-    <>
-      <div className="text-3xl col-span-12">Monthly Summary</div>
-      <Table data={monthlySummary} />
-    </>
-  );
+        <div className="col-span-12"></div>
+        <WorkoutsTable workoutsData={parsedWorkoutsData} />
+      </>
+    );
+  };
 
   return (
     <>
@@ -114,7 +130,11 @@ export const Workouts = () => {
         </button>
       </div>
 
-      {view === Views.workouts ? renderWorkoutsView() : renderSummaryView()}
+      {view === Views.workouts ? (
+        renderWorkoutsTable()
+      ) : (
+        <WorkoutsSummary summary={data.summary} />
+      )}
     </>
   );
 };

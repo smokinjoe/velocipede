@@ -35,11 +35,13 @@ export const me = async (sessionId?: string): Promise<Me> => {
 };
 
 export const workouts = async (
+  page: number = 0,
+  limit: number = 20,
   userId?: string,
   sessionId?: string
 ): Promise<Workout> => {
   const response = await getInternalApiClient().get(
-    `/api/workouts?user_id=${userId}&session_id=${sessionId}`
+    `/api/workouts?user_id=${userId}&session_id=${sessionId}&page=${page}&limit=${limit}`
   );
   return response.data;
 };

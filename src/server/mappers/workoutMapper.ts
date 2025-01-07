@@ -51,7 +51,7 @@ export const workoutMapper = (response: PelotonWorkoutResponse): Workout => {
     count: response.count,
     pageCount: response.page_count,
     showPrevious: response.show_previous,
-    showNext: response.page < response.page_count,
+    showNext: response.show_next,
     sortBy: "created_at",
     next: {
       workoutId: response.next.workout_id,

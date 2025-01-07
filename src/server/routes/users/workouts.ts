@@ -5,8 +5,11 @@ import { workoutMapper } from "../../mappers/workoutMapper";
 const router = express.Router();
 
 router.get("/workouts", async (req, res) => {
+  // TODO: Add error handling for when not present - because they should ALWAYS be present
+  const pageQueryParam = `page=${req.query.page}`;
+  const limitQueryParam = `&limit=${req.query.limit}`;
   const response = await fetch(
-    `https://api.onepeloton.com/api/user/${req.query.user_id}/workouts`,
+    `https://api.onepeloton.com/api/user/${req.query.user_id}/workouts?${pageQueryParam}${limitQueryParam}`,
     {
       method: "GET",
       headers: {
