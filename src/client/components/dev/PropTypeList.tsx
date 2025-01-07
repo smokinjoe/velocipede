@@ -1,5 +1,6 @@
 type DataListProps = {
-  data: Record<string, string>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: Record<string, any>;
 };
 
 const parseValue = (value: string): boolean | number | string => {

@@ -2,7 +2,6 @@ import { useUserSession } from "@/client/hooks/useUserSession";
 import { useMe } from "../../hooks/usePelotonQueries";
 import { Loading } from "@/client/components/ui/Loading";
 import { DataList } from "@/client/components/ui/DataList";
-import { PropTypeList } from "@/client/components/dev/PropTypeList";
 import { Table } from "@/client/components/ui/Table";
 
 export const Me = () => {
