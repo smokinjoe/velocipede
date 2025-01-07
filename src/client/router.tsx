@@ -1,8 +1,9 @@
 import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
 
-import { Sandbox } from "./screens/Sandbox";
-import { Layout } from "./Layout";
-import { Login } from "./screens/Login/Login";
+import { Layout } from "client/Layout";
+import { Login } from "client/screens/Login/Login";
+import { Me } from "client/screens/Me/Me";
+import { Workouts } from "client/screens/Workouts/Workouts";
 
 export const routes = [
   {
@@ -10,11 +11,19 @@ export const routes = [
     children: [
       {
         path: "/",
-        element: <Sandbox />,
+        element: <Login />,
+      },
+      {
+        path: "/workouts",
+        element: <Workouts />,
       },
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/me",
+        element: <Me />,
       },
     ],
   },

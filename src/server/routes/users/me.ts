@@ -1,5 +1,6 @@
 import express from "express";
 import { handleResponse } from "../../utils/handleResponse";
+import { mapMe } from "../../mappers/meMapper";
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ router.get("/me", async (req, res) => {
     },
   });
 
-  handleResponse(res, response, (data) => data);
+  handleResponse(res, response, mapMe);
 });
 
 export default router;
