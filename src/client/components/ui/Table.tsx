@@ -4,6 +4,7 @@ type TableProps = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     string | number | boolean | null | Record<string, any>
   >[];
+  columnNames?: Record<string, string>;
 };
 
 const TableHeader = ({ keys }: { keys: string[] }) => {
@@ -50,8 +51,10 @@ const TableRow = ({
   return body;
 };
 
-export const Table = ({ data }: TableProps) => {
-  const tableHeaderKeys = Object.keys(data[0]);
+export const Table = ({ data, columnNames }: TableProps) => {
+  const tableHeaderKeys = columnNames
+    ? Object.keys(data[0]).map((key) => columnNames[key])
+    : Object.keys(data[0]);
 
   return (
     <table className="table-auto">
@@ -59,7 +62,7 @@ export const Table = ({ data }: TableProps) => {
       <tbody>
         {data.map((row, index) => (
           <tr key={index}>
-            <TableRow data={row} keys={tableHeaderKeys} />
+            <TableRow data={row} keys={Object.keys(data[0])} />
           </tr>
         ))}
       </tbody>

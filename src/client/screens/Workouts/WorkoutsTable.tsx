@@ -13,11 +13,22 @@ type WorkoutsTableProps = {
   }>;
 };
 
+const tableColumnNames = {
+  createdAt: "Created At",
+  isTotalWorkPersonalRecord: "Personal Record",
+  isOutdoor: "Outdoor",
+  name: "Name",
+  status: "Status",
+  totalWork: "Total Work",
+  fitnessDiscipline: "Fitness Discipline",
+  workoutType: "Workout Type",
+};
+
 export const WorkoutsTable = ({ workoutsData }: WorkoutsTableProps) => {
   return (
     <>
       <div className="text-3xl col-span-12">Workouts Data</div>
-      <Table data={workoutsData} />
+      <Table data={workoutsData} columnNames={tableColumnNames} />
     </>
   );
 };
