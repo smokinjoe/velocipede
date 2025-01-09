@@ -28,7 +28,7 @@ type WorkoutCountsProps = {
 
 export const WorkoutCounts = ({ workouts }: WorkoutCountsProps) => {
   return (
-    <div className="workout-counts col-span-12 grid grid-cols-12 gap-4">
+    <div className="workout-counts col-span-12 grid grid-cols-12 gap-4 mt-5">
       <div className="text-4xl font-bold col-span-12">Workout Counts</div>
 
       {workouts.map((workout) => (
