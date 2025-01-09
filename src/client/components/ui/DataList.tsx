@@ -22,9 +22,7 @@ export const DataList = ({ data, rowTitles }: DataListProps) => {
             <div key={index} className="col-span-3">
               <div className="text-xl font-bold">{getName(key)}</div>
             </div>
-            <div className="col-span-9 text-xl">
-              {JSON.stringify(data[key], null, 2)}
-            </div>
+            <div className="col-span-9 text-xl">{data[key]}</div>
           </div>
         );
       })}

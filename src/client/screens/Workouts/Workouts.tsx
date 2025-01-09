@@ -6,6 +6,7 @@ import { useUserSession } from "@/client/hooks/useUserSession";
 import { useWorkouts } from "@/client/hooks/usePelotonQueries";
 import { WorkoutsTable } from "./WorkoutsTable";
 import { WorkoutsSummary } from "./WorkoutsSummary";
+import { formatDateToMMDDYYYY } from "@/common/utils/date";
 
 const Views = {
   workouts: "workouts",
@@ -47,12 +48,7 @@ export const Workouts = () => {
 
   // Peel out Workouts data
   const parsedWorkoutsData = workouts.map((workout) => {
-    const createdAt = new Date(workout.createdAt * 1000);
-
-    const day = String(createdAt.getDate()).padStart(2, "0");
-    const month = String(createdAt.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const year = createdAt.getFullYear();
-    const parsedCreatedAt = `${month}/${day}/${year}`;
+    const parsedCreatedAt = formatDateToMMDDYYYY(workout.createdAt);
 
     return {
       createdAt: parsedCreatedAt,

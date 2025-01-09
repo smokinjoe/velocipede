@@ -4,6 +4,7 @@ import { Loading } from "@/client/components/ui/Loading";
 import { UserDetails } from "./UserDetails";
 import { WorkoutCounts } from "./WorkoutCounts";
 import { WorkoutMetrics } from "./WorkoutMetrics";
+import { formatDateToMMDDYYYY } from "@/common/utils/date";
 
 export const Me = () => {
   const { userSession } = useUserSession();
@@ -40,7 +41,7 @@ export const Me = () => {
     imageUrl,
     name,
     email,
-    birthday,
+    birthday: formatDateToMMDDYYYY(birthday),
     totalFollowers,
     totalFollowing,
     weight,
@@ -73,9 +74,7 @@ export const Me = () => {
       <div className="text-5xl font-bold col-span-12">Me Data</div>
 
       <UserDetails {...userDetails} />
-
       <WorkoutMetrics {...metricDetails} />
-
       <WorkoutCounts workouts={data.workoutCounts} />
     </>
   );

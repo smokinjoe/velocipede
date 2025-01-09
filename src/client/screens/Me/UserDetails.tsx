@@ -5,7 +5,7 @@ type UserDetailsProps = {
   imageUrl: string;
   name: string;
   email: string;
-  birthday: number;
+  birthday: string;
   totalFollowers: number;
   totalFollowing: number;
   weight: number;

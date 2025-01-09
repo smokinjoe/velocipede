@@ -41,6 +41,7 @@ const TableRow = ({
     }
     return value;
   };
+
   const body = keys.map((key: string, index: number) => {
     return (
       <td key={`${key}-${index}`} className="border px-4 py-2">
