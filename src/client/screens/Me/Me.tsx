@@ -3,6 +3,7 @@ import { useMe } from "../../hooks/usePelotonQueries";
 import { Loading } from "@/client/components/ui/Loading";
 import { DataList } from "@/client/components/ui/DataList";
 import { Table } from "@/client/components/ui/Table";
+import { WorkoutCounts } from "./WorkoutCounts";
 
 export const Me = () => {
   const { userSession } = useUserSession();
@@ -71,17 +72,13 @@ export const Me = () => {
     <>
       <div className="text-5xl font-bold col-span-12">Me Data</div>
 
-      <div className="text-2xl col-span-12">User Details</div>
+      <div className="text-3xl font-bold col-span-12">User Details</div>
       <DataList data={userDetails} />
-      <div className="col-span-12"></div>
 
-      <div className="text-2xl col-span-12">Workout Metrics</div>
+      <div className="text-3xl font-bold col-span-12">Workout Metrics</div>
       <DataList data={metricDetails} />
-      <div className="col-span-12"></div>
 
-      <div className="text-2xl col-span-12">Workout Counts</div>
-      <Table data={data.workoutCounts} />
-      <div className="col-span-12"></div>
+      <WorkoutCounts workouts={data.workoutCounts} />
     </>
   );
 };
