@@ -11,8 +11,12 @@ export const WorkoutCard = ({
   count,
   iconUrl,
 }: WorkoutCardProps) => {
+  const fadedClass = count === 0 ? "opacity-50" : "";
+
   return (
-    <div className="workout-card col-span-3 border-gray-800 border p-3 rounded-lg">
+    <div
+      className={`${fadedClass} workout-card col-span-3 border-gray-800 border p-3 rounded-lg`}
+    >
       <div className="workout-card-icon">
         <div className="font-bold text-2xl">{name}</div>
         <div className="text-xl">Count: {count}</div>
@@ -31,9 +35,11 @@ export const WorkoutCounts = ({ workouts }: WorkoutCountsProps) => {
     <div className="workout-counts col-span-12 grid grid-cols-12 gap-4 mt-5">
       <div className="text-4xl font-bold col-span-12">Workout Counts</div>
 
-      {workouts.map((workout) => (
-        <WorkoutCard key={workout.name} {...workout} />
-      ))}
+      {workouts
+        .sort((a, b) => b.count - a.count)
+        .map((workout) => (
+          <WorkoutCard key={workout.name} {...workout} />
+        ))}
     </div>
   );
 };

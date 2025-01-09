@@ -1,7 +1,6 @@
 import { useUserSession } from "@/client/hooks/useUserSession";
 import { useMe } from "../../hooks/usePelotonQueries";
 import { Loading } from "@/client/components/ui/Loading";
-import { DataList } from "@/client/components/ui/DataList";
 import { UserDetails } from "./UserDetails";
 import { WorkoutCounts } from "./WorkoutCounts";
 import { WorkoutMetrics } from "./WorkoutMetrics";

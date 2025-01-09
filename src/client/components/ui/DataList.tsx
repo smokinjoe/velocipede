@@ -11,18 +11,18 @@ export const DataList = ({ data, rowTitles }: DataListProps) => {
   };
 
   return (
-    <div className="col-span-12 grid grid-cols-12  bg-gray-100 border border-gray-800 rounded-xl">
+    <div className="col-span-12 grid grid-cols-12 bg-gray-100 border border-gray-800 rounded-lg">
       {propertyKeys.map((key, index) => {
         return (
           <div
             className={`col-span-12 grid grid-cols-12 ${
               index === 0 ? "" : "border-t"
-            } border-slate-800 px-5 py-5`}
+            } border-gray-800 px-5 py-5 hover:bg-gray-200`}
           >
             <div key={index} className="col-span-3">
               <div className="text-xl font-bold">{getName(key)}</div>
             </div>
-            <div className="col-span-9">
+            <div className="col-span-9 text-xl">
               {JSON.stringify(data[key], null, 2)}
             </div>
           </div>
