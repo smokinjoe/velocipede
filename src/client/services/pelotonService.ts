@@ -1,5 +1,7 @@
 // import { getPelotonApiClient } from "./pelotonApiClient";
+import { Me } from "@/common/types/Me";
 import { getInternalApiClient } from "./internalApiClient";
+import { Workout } from "@/common/types/Workout";
 
 export const login = async (username: string, password: string) => {
   const response = await getInternalApiClient().post(
@@ -20,7 +22,7 @@ export const login = async (username: string, password: string) => {
   return response.data;
 };
 
-export const me = async (sessionId?: string) => {
+export const me = async (sessionId?: string): Promise<Me> => {
   const response = await getInternalApiClient().get(
     `/api/me?session_id=${sessionId}`,
     {
@@ -32,9 +34,14 @@ export const me = async (sessionId?: string) => {
   return response.data;
 };
 
-export const workouts = async (userId?: string, sessionId?: string) => {
+export const workouts = async (
+  page: number = 0,
+  limit: number = 20,
+  userId?: string,
+  sessionId?: string
+): Promise<Workout> => {
   const response = await getInternalApiClient().get(
-    `/api/workouts?user_id=${userId}&session_id=${sessionId}`
+    `/api/workouts?user_id=${userId}&session_id=${sessionId}&page=${page}&limit=${limit}`
   );
   return response.data;
 };

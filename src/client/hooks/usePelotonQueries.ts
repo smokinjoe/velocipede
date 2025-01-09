@@ -29,10 +29,21 @@ export const useMe = ({ isLoggedIn, sessionId }: UserSession) => {
   });
 };
 
-export const useWorkouts = ({ isLoggedIn, userId, sessionId }: UserSession) => {
+type useWorkoutsParams = UserSession & {
+  page: number;
+  limit: number;
+};
+
+export const useWorkouts = ({
+  isLoggedIn,
+  userId,
+  sessionId,
+  page,
+  limit,
+}: useWorkoutsParams) => {
   return useQuery({
-    queryKey: ["workouts"],
+    queryKey: ["workouts", page, limit],
     enabled: isLoggedIn,
-    queryFn: async () => await workouts(userId, sessionId),
+    queryFn: async () => await workouts(page, limit, userId, sessionId),
   });
 };
