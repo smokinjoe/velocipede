@@ -4,7 +4,7 @@ type DataListProps = {
 };
 
 const parseValue = (value: string): boolean | number | string => {
-  if (value === "") return "";
+  if (value === "") return "string";
   const numberValue = parseFloat(value);
   if (!isNaN(numberValue)) return typeof numberValue;
   try {
