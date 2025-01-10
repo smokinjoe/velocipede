@@ -1,14 +1,7 @@
 import { DataList } from "@/client/components/ui/DataList";
+import { WorkoutMetrics as WorkoutMetricsType } from "@/common/types/Me";
 
-type WorkoutMetricsProps = {
-  totalWorkouts: number;
-  defaultMaxHeartRate: number;
-  defaultHeartRateZones: string;
-  totalPedalingMetricWorkouts: number;
-  cyclingFtpSource: string;
-  cyclingFtp: number;
-  estimatedCyclingFtp: number;
-};
+type WorkoutMetricsProps = WorkoutMetricsType;
 
 export const WorkoutMetrics = (props: WorkoutMetricsProps) => {
   const rowTitles = {

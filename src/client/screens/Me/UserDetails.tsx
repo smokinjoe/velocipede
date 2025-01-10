@@ -1,16 +1,7 @@
 import { DataList } from "@/client/components/ui/DataList";
+import { UserDetails as UserDetailsType } from "@/common/types/Me";
 
-type UserDetailsProps = {
-  username: string;
-  imageUrl: string;
-  name: string;
-  email: string;
-  birthday: string;
-  totalFollowers: number;
-  totalFollowing: number;
-  weight: number;
-  height: number;
-};
+type UserDetailsProps = UserDetailsType;
 
 export const UserDetails = (props: UserDetailsProps) => {
   const rowTitles = {

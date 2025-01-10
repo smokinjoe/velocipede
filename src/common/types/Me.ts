@@ -7,34 +7,41 @@ export type WorkoutCount = {
 
 export type Me = {
   id: string;
-  imageUrl: string;
-  username: string;
-  name: string;
+
+  userDetails: UserDetails;
+  workoutCounts: WorkoutCount[];
+  workoutMetrics: WorkoutMetrics;
+
+  /**
+   * Currently unused properties
+   */
   firstName: string;
   middleInitial: string;
   lastName: string;
-
   gender: string;
-  email: string;
-  birthday: number;
+  weightUnit: string;
+  heightUnit: string;
+  location: string;
+};
 
+export type UserDetails = {
+  username: string;
+  imageUrl: string;
+  name: string;
+  email: string;
+  birthday: string;
   totalFollowers: number;
   totalFollowing: number;
+  weight: string;
+  height: string;
+};
 
-  weight: number;
-  weightUnit: string;
-  height: number;
-  heightUnit: string;
-
-  location: string;
-
+export type WorkoutMetrics = {
   totalWorkouts: number;
   defaultMaxHeartRate: number;
-  defaultHeartRateZones: Array<number>;
+  defaultHeartRateZones: string;
   totalPedalingMetricWorkouts: number;
   cyclingFtpSource: string;
   cyclingFtp: number;
   estimatedCyclingFtp: number;
-
-  workoutCounts: WorkoutCount[];
 };
