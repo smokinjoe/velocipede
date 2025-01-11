@@ -2,6 +2,7 @@
 import { Me } from "@/common/types/Me";
 import { getInternalApiClient } from "./internalApiClient";
 import { Workout } from "@/common/types/Workout";
+import { Overview } from "@/common/types/Overview";
 
 export const login = async (username: string, password: string) => {
   const response = await getInternalApiClient().post(
@@ -42,6 +43,16 @@ export const workouts = async (
 ): Promise<Workout> => {
   const response = await getInternalApiClient().get(
     `/api/workouts?user_id=${userId}&session_id=${sessionId}&page=${page}&limit=${limit}`
+  );
+  return response.data;
+};
+
+export const overview = async (
+  userId?: string,
+  sessionId?: string
+): Promise<Overview> => {
+  const response = await getInternalApiClient().get(
+    `/api/overview?user_id=${userId}&session_id=${sessionId}`
   );
   return response.data;
 };

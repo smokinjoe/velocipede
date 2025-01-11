@@ -12,6 +12,7 @@ router.get("/overview", async (req, res) => {
       headers: {
         "Content-Type": "application/json",
         Cookie: `peloton_session_id=${req.query.session_id}`,
+        "Peloton-Platform": "web",
       },
     }
   );

@@ -7,19 +7,18 @@ import { useWorkouts } from "@/client/hooks/usePelotonQueries";
 import { WorkoutsTable } from "./WorkoutsTable";
 import { WorkoutsSummary } from "./WorkoutsSummary";
 import { formatDateToMMDDYYYY } from "@/common/utils/date";
+import { usePillNavigation } from "@/client/components/ui/PillNavigation/usePillNavigation";
+import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNavigation";
 
-const Views = {
-  workouts: "workouts",
-  summary: "summary",
-} as const;
-
-type ViewType = (typeof Views)[keyof typeof Views];
+const views = ["workouts", "summary"];
 
 export const Workouts = () => {
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(20);
   const [formLimit, setFormLimit] = useState(limit); // TODO: This is dumb, fix this
-  const [view, setView] = useState<ViewType>(Views.workouts);
+
+  const { currentView, handleViewChange } = usePillNavigation(views[0]);
+
   const { userSession } = useUserSession();
 
   const { isLoggedIn, sessionId, userId } = userSession;
@@ -31,10 +30,6 @@ export const Workouts = () => {
     page,
     limit,
   });
-
-  const handleViewChange = (view: ViewType) => {
-    setView(view);
-  };
 
   if (isLoading) {
     return <Loading />;
@@ -179,38 +174,15 @@ export const Workouts = () => {
     );
   };
 
-  const normalPillClass =
-    "text-center block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4";
-  const activePillClass =
-    "text-center block border border-blue-500 rounded py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white";
-
   return (
     <>
-      <div className="flex flex-col col-span-12 items-center">
-        <ul className="flex col-span-2">
-          <li className="flex-1 mr-2">
-            <button
-              onClick={() => handleViewChange(Views.workouts)}
-              className={
-                view === Views.workouts ? activePillClass : normalPillClass
-              }
-            >
-              Workouts
-            </button>
-          </li>
-          <li className="flex-1 mr-2">
-            <button
-              onClick={() => handleViewChange(Views.summary)}
-              className={
-                view === Views.summary ? activePillClass : normalPillClass
-              }
-            >
-              Summary
-            </button>
-          </li>
-        </ul>
-      </div>
-      {view === Views.workouts ? (
+      <PillNavigation
+        views={views}
+        currentView={currentView}
+        handleViewChange={handleViewChange}
+      />
+
+      {currentView === "workouts" ? (
         renderWorkoutsTable()
       ) : (
         <WorkoutsSummary summary={data.summary} />

@@ -1,20 +1,34 @@
 import { useUserSession } from "@/client/hooks/useUserSession";
-import { useMe } from "../../hooks/usePelotonQueries";
+import { useMe, useOverview } from "../../hooks/usePelotonQueries";
 import { Loading } from "@/client/components/ui/Loading";
+import { usePillNavigation } from "@/client/components/ui/PillNavigation/usePillNavigation";
+
 import { UserDetails } from "./UserDetails";
 import { WorkoutCounts } from "./WorkoutCounts";
 import { WorkoutMetrics } from "./WorkoutMetrics";
+import { Overview } from "./Overview";
+import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNavigation";
+
+const views = ["me", "overview"];
 
 export const Me = () => {
   const { userSession } = useUserSession();
-  const { isLoggedIn, sessionId } = userSession;
+  const { isLoggedIn, sessionId, userId } = userSession;
+
+  const { currentView, handleViewChange } = usePillNavigation(views[0]);
 
   const { data, isLoading } = useMe({
     isLoggedIn: isLoggedIn,
     sessionId,
   });
 
-  if (isLoading) {
+  const { data: overviewData, isLoading: overviewIsLoading } = useOverview({
+    isLoggedIn: isLoggedIn,
+    sessionId,
+    userId,
+  });
+
+  if (isLoading || overviewIsLoading) {
     return <Loading />;
   }
 
@@ -24,10 +38,25 @@ export const Me = () => {
 
   return (
     <>
-      <div className="text-5xl font-bold col-span-12">Me Data</div>
-      <UserDetails {...data.userDetails} />
-      <WorkoutMetrics {...data.workoutMetrics} />
-      <WorkoutCounts workouts={data.workoutCounts} />
+      <PillNavigation
+        views={views}
+        currentView={currentView}
+        handleViewChange={handleViewChange}
+      />
+
+      {currentView === "me" ? (
+        <>
+          <div className="text-5xl font-bold col-span-12">Me Data</div>
+          <UserDetails {...data.userDetails} />
+          <WorkoutMetrics {...data.workoutMetrics} />
+          <WorkoutCounts workouts={data.workoutCounts} />
+        </>
+      ) : (
+        <>
+          <div className="text-5xl font-bold col-span-12">Overview Data</div>
+          <Overview overview={overviewData} />
+        </>
+      )}
     </>
   );
 };
