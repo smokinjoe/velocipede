@@ -43,6 +43,7 @@ export const Workouts = () => {
   const { workouts } = data;
 
   // Peel out Workouts data
+  // TODO: have this done at the mapper seam in the future
   const parsedWorkoutsData = workouts.map((workout) => {
     const parsedCreatedAt = formatDateToMMDDYYYY(workout.createdAt);
 

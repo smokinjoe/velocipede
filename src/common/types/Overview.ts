@@ -21,11 +21,8 @@ export type PersonalRecord = {
 
 export type Record = {
   name: string;
-  slug: string;
-  value: number;
+  value: string;
   rawValue: number;
-  unit: string;
-  unitSlug: string;
   workoutId: string;
   workoutDate: string;
 };

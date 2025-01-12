@@ -17,7 +17,7 @@ const workoutDataMapper = (
     isOutdoor: workout.is_outdoor,
     name: workout.name,
     status: "COMPLETE",
-    totalWork: workout.total_work,
+    totalWork: workout.total_work, // TODO: this is in Joules, convert to KJ
     deviceType: workout.device_type,
     fitnessDiscipline: workout.fitness_discipline,
     metricsType: workout.metrics_type,

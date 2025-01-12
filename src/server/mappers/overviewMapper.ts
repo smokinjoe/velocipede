@@ -1,4 +1,7 @@
-import { formatDateToMMDDYYYY } from "../../common/utils/date";
+import {
+  formatDateToMMDDYYYY,
+  formatDateStringToMMDDYYYY,
+} from "../../common/utils/date";
 import {
   Achievement,
   Overview,
@@ -32,13 +35,10 @@ const mapPersonalRecord = (record: PelotonPersonalRecord): PersonalRecord => ({
 
 const mapRecord = (record: PelotonRecord): Record => ({
   name: record.name,
-  slug: record.slug,
-  value: record.value,
+  value: `${record.value} ${record.unit}`,
   rawValue: record.raw_value,
-  unit: record.unit,
-  unitSlug: record.unit_slug,
   workoutId: record.workout_id,
-  workoutDate: record.workout_date,
+  workoutDate: formatDateStringToMMDDYYYY(record.workout_date),
 });
 
 const mapAchievement = (achievement: PelotonAchievement): Achievement => ({
