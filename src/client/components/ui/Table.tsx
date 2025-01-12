@@ -53,9 +53,10 @@ const TableRow = ({
 };
 
 export const Table = ({ data, columnNames }: TableProps) => {
-  const tableHeaderKeys = columnNames
-    ? Object.keys(data[0]).map((key) => columnNames[key])
-    : Object.keys(data[0]);
+  // TODO: Refactor this a little more, it's pretty confusing to understand
+  const tableHeaderKeys = Object.keys(data[0]).map((key) =>
+    columnNames && columnNames[key] ? columnNames[key] : key
+  );
 
   return (
     <table className="table-auto">

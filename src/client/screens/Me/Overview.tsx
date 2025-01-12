@@ -12,13 +12,24 @@ export const Overview = ({ overview }: OverviewProps) => {
   }
 
   const renderPersonalRecords = () => {
+    const tableHeaders = {
+      name: "Name",
+      slug: "Slug",
+      value: "Value",
+      rawValue: "Raw Value",
+      unit: "Unit",
+      unitSlug: "Unit Slug",
+      workoutId: "Workout ID",
+      workoutDate: "Workout Date",
+    };
+
     return (
       <div className="col-span-12">
         <div className="text-3xl font-bold">Personal Records</div>
         {overview.personalRecords.map((pr) => (
           <div key={pr.slug} className="flex flex-col">
             <div className="text-xl font-bold my-4">{pr.name}</div>
-            <Table data={pr.records} />
+            <Table data={pr.records} columnNames={tableHeaders} />
           </div>
         ))}
       </div>
@@ -26,11 +37,34 @@ export const Overview = ({ overview }: OverviewProps) => {
   };
 
   const renderStreaks = () => {
-    return <DataList data={overview.streaks} />;
+    const rowTitles = {
+      currentWeekly: "Current Weekly",
+      bestWeekly: "Best Weekly",
+      startDateOfCurrentWeekly: "Start Date of Current Weekly",
+    };
+    return (
+      <div className="col-span-12">
+        <div className="text-3xl font-bold">Streaks</div>
+        <DataList data={overview.streaks} rowTitles={rowTitles} />
+      </div>
+    );
   };
 
   const renderAchievements = () => {
-    return <Table data={overview.achievements} />;
+    const tableHeaders = {
+      id: "ID",
+      name: "Name",
+      slug: "Slug",
+      imageUrl: "Image URL",
+      description: "Description",
+    };
+
+    return (
+      <div className="col-span-12">
+        <div className="text-3xl font-bold">Achievements</div>
+        <Table data={overview.achievements} columnNames={tableHeaders} />
+      </div>
+    );
   };
 
   return (
