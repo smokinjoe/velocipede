@@ -17,7 +17,7 @@ export const Workouts = () => {
   const selectedView = useSelectedView();
   const { userSession } = useUserSession();
   const { isLoggedIn, sessionId, userId } = userSession;
-  const { page, setPage, limit, setLimit } = usePagination();
+  const { page, limit } = usePagination();
   const { data, isLoading } = useWorkouts({
     isLoggedIn: isLoggedIn,
     userId,
@@ -63,10 +63,6 @@ export const Workouts = () => {
           showNext={showNext}
           total={total}
           count={count}
-          page={page}
-          limit={limit}
-          setPage={setPage}
-          setLimit={setLimit}
         />
         <div className="col-span-12"></div>
         <WorkoutsTable workoutsData={parsedWorkoutsData} />

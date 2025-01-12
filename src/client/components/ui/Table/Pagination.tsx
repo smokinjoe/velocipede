@@ -1,27 +1,21 @@
 import { useState } from "react";
+import { usePagination } from "./usePagination";
 
 type PaginationProps = {
   showPrevious: boolean;
   showNext: boolean;
   total: number;
   count: number;
-  page: number;
-  limit: number;
-  setPage: (page: number) => void;
-  setLimit: (limit: number) => void;
 };
 
 export const Pagination = ({
   showPrevious,
   showNext,
-  page,
-  limit,
   total,
   count,
-  setPage,
-  setLimit,
 }: PaginationProps) => {
-  const [formLimit, setFormLimit] = useState(limit); // TODO: This is dumb, fix this
+  const { setPage, setLimit, page, limit } = usePagination();
+  const [formLimit, setFormLimit] = useState(limit);
 
   const start = page * limit + 1;
   const end = start + count - 1;

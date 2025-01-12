@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { atom, useAtom } from "jotai";
+
+const pageAtom = atom(0);
+const limitAtom = atom(20);
 
 export const usePagination = () => {
-  const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(20);
+  const [page, setPage] = useAtom(pageAtom);
+  const [limit, setLimit] = useAtom(limitAtom);
 
   return {
     page,
