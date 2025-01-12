@@ -8,6 +8,7 @@ import checkSession from "./auth/checkSession";
 
 import me from "./users/me";
 import workouts from "./users/workouts";
+import overview from "./users/overview";
 
 const router = express.Router();
 
@@ -17,6 +18,10 @@ router.use("/auth", [
   asyncHandler(checkSession),
 ]);
 
-router.use("/api", [asyncHandler(me), asyncHandler(workouts)]);
+router.use("/api", [
+  asyncHandler(me),
+  asyncHandler(workouts),
+  asyncHandler(overview),
+]);
 
 export default router;

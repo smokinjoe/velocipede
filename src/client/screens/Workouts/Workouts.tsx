@@ -1,24 +1,25 @@
 import { useState } from "react";
 
-import { Loading } from "@/client/components/ui/Loading";
-
 import { useUserSession } from "@/client/hooks/useUserSession";
 import { useWorkouts } from "@/client/hooks/usePelotonQueries";
+import { useSelectedView } from "@/client/components/ui/PillNavigation/useSelectedView";
+
+import { Loading } from "@/client/components/ui/Loading";
+import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNavigation";
+
 import { WorkoutsTable } from "./WorkoutsTable";
 import { WorkoutsSummary } from "./WorkoutsSummary";
+import { formatDateToMMDDYYYY } from "@/common/utils/date";
 
-const Views = {
-  workouts: "workouts",
-  summary: "summary",
-} as const;
-
-type ViewType = (typeof Views)[keyof typeof Views];
+const views = ["workouts", "summary"];
 
 export const Workouts = () => {
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(20);
   const [formLimit, setFormLimit] = useState(limit); // TODO: This is dumb, fix this
-  const [view, setView] = useState<ViewType>(Views.workouts);
+
+  const selectedView = useSelectedView();
+
   const { userSession } = useUserSession();
 
   const { isLoggedIn, sessionId, userId } = userSession;
@@ -31,10 +32,6 @@ export const Workouts = () => {
     limit,
   });
 
-  const handleViewChange = (view: ViewType) => {
-    setView(view);
-  };
-
   if (isLoading) {
     return <Loading />;
   }
@@ -46,13 +43,9 @@ export const Workouts = () => {
   const { workouts } = data;
 
   // Peel out Workouts data
+  // TODO: have this done at the mapper seam in the future
   const parsedWorkoutsData = workouts.map((workout) => {
-    const createdAt = new Date(workout.createdAt * 1000);
-
-    const day = String(createdAt.getDate()).padStart(2, "0");
-    const month = String(createdAt.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const year = createdAt.getFullYear();
-    const parsedCreatedAt = `${month}/${day}/${year}`;
+    const parsedCreatedAt = formatDateToMMDDYYYY(workout.createdAt);
 
     return {
       createdAt: parsedCreatedAt,
@@ -135,9 +128,9 @@ export const Workouts = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M13 5H1m0 0 4 4M1 5l4-4"
                 />
               </svg>
@@ -158,9 +151,9 @@ export const Workouts = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
@@ -183,38 +176,11 @@ export const Workouts = () => {
     );
   };
 
-  const normalPillClass =
-    "text-center block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4";
-  const activePillClass =
-    "text-center block border border-blue-500 rounded py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white";
-
   return (
     <>
-      <div className="flex flex-col col-span-12 items-center">
-        <ul className="flex col-span-2">
-          <li className="flex-1 mr-2">
-            <button
-              onClick={() => handleViewChange(Views.workouts)}
-              className={
-                view === Views.workouts ? activePillClass : normalPillClass
-              }
-            >
-              Workouts
-            </button>
-          </li>
-          <li className="flex-1 mr-2">
-            <button
-              onClick={() => handleViewChange(Views.summary)}
-              className={
-                view === Views.summary ? activePillClass : normalPillClass
-              }
-            >
-              Summary
-            </button>
-          </li>
-        </ul>
-      </div>
-      {view === Views.workouts ? (
+      <PillNavigation views={views} selectedView={selectedView} />
+
+      {selectedView === "workouts" ? (
         renderWorkoutsTable()
       ) : (
         <WorkoutsSummary summary={data.summary} />
