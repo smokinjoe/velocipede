@@ -33,7 +33,7 @@ export type Record = {
 export type Streaks = {
   currentWeekly: number;
   bestWeekly: number;
-  startDateOfCurrentWeekly: number;
+  startDateOfCurrentWeekly: string;
 };
 
 export type Achievement = {

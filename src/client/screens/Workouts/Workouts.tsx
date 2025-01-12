@@ -1,14 +1,15 @@
 import { useState } from "react";
 
-import { Loading } from "@/client/components/ui/Loading";
-
 import { useUserSession } from "@/client/hooks/useUserSession";
 import { useWorkouts } from "@/client/hooks/usePelotonQueries";
+import { useSelectedView } from "@/client/components/ui/PillNavigation/useSelectedView";
+
+import { Loading } from "@/client/components/ui/Loading";
+import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNavigation";
+
 import { WorkoutsTable } from "./WorkoutsTable";
 import { WorkoutsSummary } from "./WorkoutsSummary";
 import { formatDateToMMDDYYYY } from "@/common/utils/date";
-import { usePillNavigation } from "@/client/components/ui/PillNavigation/usePillNavigation";
-import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNavigation";
 
 const views = ["workouts", "summary"];
 
@@ -17,7 +18,7 @@ export const Workouts = () => {
   const [limit, setLimit] = useState(20);
   const [formLimit, setFormLimit] = useState(limit); // TODO: This is dumb, fix this
 
-  const { currentView, handleViewChange } = usePillNavigation(views[0]);
+  const selectedView = useSelectedView();
 
   const { userSession } = useUserSession();
 
@@ -126,9 +127,9 @@ export const Workouts = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M13 5H1m0 0 4 4M1 5l4-4"
                 />
               </svg>
@@ -149,9 +150,9 @@ export const Workouts = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
@@ -176,13 +177,9 @@ export const Workouts = () => {
 
   return (
     <>
-      <PillNavigation
-        views={views}
-        currentView={currentView}
-        handleViewChange={handleViewChange}
-      />
+      <PillNavigation views={views} selectedView={selectedView} />
 
-      {currentView === "workouts" ? (
+      {selectedView === "workouts" ? (
         renderWorkoutsTable()
       ) : (
         <WorkoutsSummary summary={data.summary} />

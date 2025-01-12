@@ -1,13 +1,15 @@
 import { useUserSession } from "@/client/hooks/useUserSession";
-import { useMe, useOverview } from "../../hooks/usePelotonQueries";
+
+import { useMe, useOverview } from "@/client/hooks/usePelotonQueries";
+import { useSelectedView } from "@/client/components/ui/PillNavigation/useSelectedView";
+
 import { Loading } from "@/client/components/ui/Loading";
-import { usePillNavigation } from "@/client/components/ui/PillNavigation/usePillNavigation";
+import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNavigation";
 
 import { UserDetails } from "./UserDetails";
 import { WorkoutCounts } from "./WorkoutCounts";
 import { WorkoutMetrics } from "./WorkoutMetrics";
 import { Overview } from "./Overview";
-import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNavigation";
 
 const views = ["me", "overview"];
 
@@ -15,7 +17,7 @@ export const Me = () => {
   const { userSession } = useUserSession();
   const { isLoggedIn, sessionId, userId } = userSession;
 
-  const { currentView, handleViewChange } = usePillNavigation(views[0]);
+  const selectedView = useSelectedView();
 
   const { data, isLoading } = useMe({
     isLoggedIn: isLoggedIn,
@@ -38,13 +40,9 @@ export const Me = () => {
 
   return (
     <>
-      <PillNavigation
-        views={views}
-        currentView={currentView}
-        handleViewChange={handleViewChange}
-      />
+      <PillNavigation views={views} selectedView={selectedView} />
 
-      {currentView === "me" ? (
+      {selectedView === "me" ? (
         <>
           <div className="text-5xl font-bold col-span-12">Me Data</div>
           <UserDetails {...data.userDetails} />

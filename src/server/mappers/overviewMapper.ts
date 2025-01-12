@@ -1,3 +1,4 @@
+import { formatDateToMMDDYYYY } from "../../common/utils/date";
 import {
   Achievement,
   Overview,
@@ -63,7 +64,9 @@ export const overviewMapper = (response: PelotonOverviewResponse): Overview => {
     streaks: {
       currentWeekly: response.streaks.current_weekly,
       bestWeekly: response.streaks.best_weekly,
-      startDateOfCurrentWeekly: response.streaks.start_date_of_current_weekly,
+      startDateOfCurrentWeekly: formatDateToMMDDYYYY(
+        response.streaks.start_date_of_current_weekly
+      ),
     },
     achievements: response.achievements.map(mapAchievement),
   };

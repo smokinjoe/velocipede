@@ -1,14 +1,18 @@
+import { usePillNavigation } from "./usePillNavigation";
+
 type PillNavigationProps = {
   views: string[];
-  currentView: string;
-  handleViewChange: (view: string) => void;
+  selectedView: string | null;
 };
 
 export const PillNavigation = ({
   views,
-  currentView,
-  handleViewChange,
+  selectedView,
 }: PillNavigationProps) => {
+  const { currentView, handleViewChange } = usePillNavigation(
+    views,
+    selectedView
+  );
   const normalPillClass =
     "text-center block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4";
   const activePillClass =
@@ -18,7 +22,7 @@ export const PillNavigation = ({
     <div className="flex flex-col col-span-12 items-center">
       <ul className="flex col-span-2">
         {views.map((view) => (
-          <li className="flex-1 mr-2">
+          <li className="flex-1 mr-2" key={view}>
             <button
               onClick={() => handleViewChange(view)}
               className={

@@ -18,8 +18,9 @@ export const DataList = ({ data, rowTitles }: DataListProps) => {
             className={`col-span-12 grid grid-cols-12 ${
               index === 0 ? "" : "border-t"
             } border-gray-800 px-5 py-5 hover:bg-gray-200`}
+            key={key}
           >
-            <div key={index} className="col-span-3">
+            <div className="col-span-3">
               <div className="text-xl font-bold">{getName(key)}</div>
             </div>
             <div className="col-span-9 text-xl">{data[key]}</div>
