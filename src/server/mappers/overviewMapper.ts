@@ -47,10 +47,6 @@ const mapAchievement = (achievement: PelotonAchievement): Achievement => ({
   slug: achievement.slug,
   imageUrl: achievement.image_url,
   description: achievement.description,
-  smallImageUrl: achievement.small_image_url,
-  largeImageUrl: achievement.large_image_url,
-  animatedImageUrl: achievement.animated_image_url,
-  kineticTokenBackground: achievement.kinetic_token_background,
 });
 
 export const overviewMapper = (response: PelotonOverviewResponse): Overview => {

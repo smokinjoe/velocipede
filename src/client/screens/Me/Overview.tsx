@@ -1,6 +1,7 @@
 import { DataList } from "@/client/components/ui/DataList";
 import { Table } from "@/client/components/ui/Table";
 import { Overview as OverviewType } from "@/common/types/Overview";
+import { AchievementCards } from "./AchievementCards";
 
 type OverviewProps = {
   overview?: OverviewType;
@@ -51,20 +52,7 @@ export const Overview = ({ overview }: OverviewProps) => {
   };
 
   const renderAchievements = () => {
-    const tableHeaders = {
-      id: "ID",
-      name: "Name",
-      slug: "Slug",
-      imageUrl: "Image URL",
-      description: "Description",
-    };
-
-    return (
-      <div className="col-span-12">
-        <div className="text-3xl font-bold">Achievements</div>
-        <Table data={overview.achievements} columnNames={tableHeaders} />
-      </div>
-    );
+    return <AchievementCards achievements={overview.achievements} />;
   };
 
   return (
