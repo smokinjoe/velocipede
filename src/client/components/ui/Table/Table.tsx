@@ -9,10 +9,10 @@ type TableProps = {
 
 const TableHeader = ({ keys }: { keys: string[] }) => {
   return (
-    <thead>
-      <tr>
+    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr className="bg-gray-700 text-white">
         {keys.map((key) => (
-          <th key={key} className="border px-4 py-2">
+          <th key={key} className="px-6 py-3">
             {key}
           </th>
         ))}
@@ -44,7 +44,7 @@ const TableRow = ({
 
   const body = keys.map((key: string, index: number) => {
     return (
-      <td key={`${key}-${index}`} className="border px-4 py-2">
+      <td key={`${key}-${index}`} className="px-6 py-4">
         {handleValue(data[key])}
       </td>
     );
@@ -58,16 +58,25 @@ export const Table = ({ data, columnNames }: TableProps) => {
     columnNames && columnNames[key] ? columnNames[key] : key
   );
 
+  /**
+   * Removed table-auto class from table
+   */
+
   return (
-    <table className="table-auto">
-      <TableHeader keys={tableHeaderKeys} />
-      <tbody>
-        {data.map((row, index) => (
-          <tr key={index}>
-            <TableRow data={row} keys={Object.keys(data[0])} />
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="relative shadow-lg rounded-lg flex flex-col overflow-hidden">
+      <table className="text-gray-500 dark:text-gray-400 shadow-mx text-left ">
+        <TableHeader keys={tableHeaderKeys} />
+        <tbody>
+          {data.map((row, index) => (
+            <tr
+              key={index}
+              className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+            >
+              <TableRow data={row} keys={Object.keys(data[0])} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };

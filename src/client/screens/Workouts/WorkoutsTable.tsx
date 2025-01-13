@@ -26,9 +26,9 @@ const tableColumnNames = {
 
 export const WorkoutsTable = ({ workoutsData }: WorkoutsTableProps) => {
   return (
-    <>
+    <div className="col-span-12 flex-col flex">
       <div className="text-3xl col-span-12">Workouts Data</div>
       <Table data={workoutsData} columnNames={tableColumnNames} />
-    </>
+    </div>
   );
 };

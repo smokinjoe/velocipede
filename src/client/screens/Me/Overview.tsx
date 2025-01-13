@@ -25,11 +25,10 @@ export const Overview = ({ overview }: OverviewProps) => {
     };
 
     return (
-      <div className="col-span-12">
-        <div className="text-3xl font-bold">Personal Records</div>
+      <div className="col-span-6">
         {overview.personalRecords.map((pr) => (
           <div key={pr.slug} className="flex flex-col">
-            <div className="text-xl font-bold my-4">{pr.name}</div>
+            <div className="text-3xl font-bold mb-4">{pr.name} records</div>
             <Table data={pr.records} columnNames={tableHeaders} />
           </div>
         ))}
@@ -44,8 +43,8 @@ export const Overview = ({ overview }: OverviewProps) => {
       startDateOfCurrentWeekly: "Start Date of Current Weekly",
     };
     return (
-      <div className="col-span-12">
-        <div className="text-3xl font-bold">Streaks</div>
+      <div className="col-span-6">
+        <div className="text-3xl font-bold mb-4">Streaks</div>
         <DataList data={overview.streaks} rowTitles={rowTitles} />
       </div>
     );
