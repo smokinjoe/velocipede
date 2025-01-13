@@ -13,7 +13,7 @@ import { Pagination, usePagination } from "@/client/components/ui/Table";
 
 const views = ["workouts", "summary"];
 
-export const Workouts = () => {
+const Workouts = () => {
   const selectedView = useSelectedView();
   const { userSession } = useUserSession();
   const { isLoggedIn, sessionId, userId } = userSession;
@@ -82,3 +82,5 @@ export const Workouts = () => {
     </>
   );
 };
+
+export default Workouts;
