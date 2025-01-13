@@ -39,10 +39,6 @@ export type Achievement = {
   slug: string;
   imageUrl: string;
   description: string;
-  smallImageUrl: null | string;
-  largeImageUrl: null | string;
-  animatedImageUrl: null | string;
-  kineticTokenBackground: null | string;
 };
 
 export type Overview = {
