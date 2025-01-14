@@ -42,6 +42,7 @@ const Workouts = () => {
     const parsedCreatedAt = formatDateToMMDDYYYY(workout.createdAt);
 
     return {
+      id: workout.id,
       createdAt: parsedCreatedAt,
       isTotalWorkPersonalRecord: workout.isTotalWorkPersonalRecord,
       isOutdoor: workout.isOutdoor,
