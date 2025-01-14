@@ -1,9 +1,7 @@
 import express from "express";
 import { handleResponse } from "../../utils/handleResponse";
-import {
-  workoutDataMapper,
-  workoutsMapper,
-} from "../../mappers/workoutsMapper";
+import { workoutsMapper } from "../../mappers/workoutsMapper";
+import { workoutMapper } from "../../mappers/workoutMapper";
 
 const router = express.Router();
 
@@ -25,6 +23,7 @@ router.get("/workouts", async (req, res) => {
 });
 
 router.get("/workouts/:id", async (req, res) => {
+  console.log("ID: ", req.params.id);
   const response = await fetch(
     `https://api.onepeloton.com/api/workout/${req.params.id}?joins=ride,ride.instructor`,
     {
@@ -35,7 +34,7 @@ router.get("/workouts/:id", async (req, res) => {
       },
     }
   );
-  handleResponse(res, response, workoutDataMapper);
+  handleResponse(res, response, workoutMapper);
 });
 
 export default router;

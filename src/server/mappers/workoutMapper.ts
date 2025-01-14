@@ -55,7 +55,7 @@ const instructorMapper = (
     pelotonInstructor.web_instructor_list_gif_image_url,
   instructorHeroImageUrl: pelotonInstructor.instructor_hero_image_url,
   // TODO: Create mapper
-  workoutShareImages: pelotonInstructor.workout_share_images.map((obj) => ({
+  workoutShareImages: pelotonInstructor.workout_share_images?.map((obj) => ({
     fitnessDiscipline: obj.fitness_discipline,
     imageUrl: obj.image_url,
   })),
@@ -70,7 +70,7 @@ const rideMapper = (pelotonRide: PelotonRide): Ride => ({
   contentAvailabilityLevel: pelotonRide.content_availability_level,
   freeForLimitedTime: pelotonRide.free_for_limited_time,
   isLimitedRide: pelotonRide.is_limited_ride,
-  availability: {
+  availability: pelotonRide.availability && {
     isAvailable: pelotonRide.availability.is_available,
     reason: pelotonRide.availability.reason,
   },
@@ -132,7 +132,7 @@ const rideMapper = (pelotonRide: PelotonRide): Ride => ({
   vodStreamId: pelotonRide.vod_stream_id,
   captions: pelotonRide.captions,
   userCaptionLocales: pelotonRide.user_caption_locales,
-  joinTokens: {
+  joinTokens: pelotonRide.join_tokens && {
     onDemand: pelotonRide.join_tokens.on_demand,
   },
   flags: pelotonRide.flags,
@@ -150,13 +150,15 @@ const rideMapper = (pelotonRide: PelotonRide): Ride => ({
   excludedPlatforms: pelotonRide.excluded_platforms,
   classAvgFollowAlongScore: pelotonRide.class_avg_follow_along_score,
   // TODO: Create mapper
-  muscleGroupScore: pelotonRide.muscle_group_score.map((obj) => ({
-    muscleGroup: obj.muscle_group,
-    score: obj.score,
-    percentage: obj.percentage,
-    bucket: obj.bucket,
-    displayName: obj.display_name,
-  })),
+  muscleGroupScore:
+    pelotonRide.muscle_group_score &&
+    pelotonRide.muscle_group_score.map((obj) => ({
+      muscleGroup: obj.muscle_group,
+      score: obj.score,
+      percentage: obj.percentage,
+      bucket: obj.bucket,
+      displayName: obj.display_name,
+    })),
 });
 
 export const workoutMapper = (
