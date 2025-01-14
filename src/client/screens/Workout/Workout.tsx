@@ -9,11 +9,11 @@ const Workout = () => {
   const { data } = useWorkout({ id, isLoggedIn, sessionId });
 
   return (
-    <div>
-      <h1>Workout</h1>
-      <p>Workout ID: {id}</p>
-      <p>{JSON.stringify(data)}</p>
-    </div>
+    <>
+      <div className="text-3xl col-span-12">Workout</div>
+      <div className="text-xl col-span-12">Workout ID: {id}</div>
+      <div className="col-span-12">{JSON.stringify(data)}</div>
+    </>
   );
 };
 
