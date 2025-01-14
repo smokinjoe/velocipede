@@ -1,11 +1,15 @@
 import {
   Instructor,
-  Ride,
+  RideBase,
+  Walk,
+  Cycle,
   WorkoutDetail,
 } from "../../common/types/WorkoutDetail";
 import {
   PelotonInstructor,
   PelotonRide,
+  PelotonRideBase,
+  PelotonWalk,
   PelotonWorkoutByIdResponse,
 } from "../types/PelotonWorkoutByIdResponse";
 
@@ -64,7 +68,25 @@ const instructorMapper = (
   defaultCueDelay: pelotonInstructor.default_cue_delay,
 });
 
-const rideMapper = (pelotonRide: PelotonRide): Ride => ({
+/**
+ * TODO: Create a Cycling type and have this rideMapper map a walk or cycle
+ */
+const rideMapper = (
+  pelotonRide: PelotonRideBase,
+  fitnessDiscipline: string
+): RideBase => {
+  if (fitnessDiscipline === "cycling") {
+    // TODO: figure out some way to assert this - or can I use a generic?
+    return cycleMapper(pelotonRide as PelotonRide);
+  }
+  if (fitnessDiscipline === "walking") {
+    return walkMapper(pelotonRide);
+  }
+
+  throw new Error("Invalid fitness discipline");
+};
+
+export const cycleMapper = (pelotonRide: PelotonRide): Cycle => ({
   instructor: instructorMapper(pelotonRide.instructor),
   contentAvailability: pelotonRide.content_availability,
   contentAvailabilityLevel: pelotonRide.content_availability_level,
@@ -161,6 +183,20 @@ const rideMapper = (pelotonRide: PelotonRide): Ride => ({
     })),
 });
 
+export const walkMapper = (response: PelotonWalk): Walk => {
+  return {
+    id: response.id,
+    isArchived: response.is_archived,
+    title: response.title,
+    scheduledStartTime: response.scheduled_start_time,
+    duration: response.duration,
+    instructor: response.instructor && {
+      name: response.instructor.name,
+      imageUrl: response.instructor.image_url,
+    },
+  };
+};
+
 export const workoutMapper = (
   response: PelotonWorkoutByIdResponse
 ): WorkoutDetail => {
@@ -192,7 +228,7 @@ export const workoutMapper = (
     totalMusicAudioPlaySeconds: response.total_music_audio_play_seconds,
     totalMusicAudioBufferSeconds: response.total_music_audio_buffer_seconds,
     serviceId: response.service_id,
-    ride: rideMapper(response.ride),
+    ride: rideMapper(response.ride, response.fitness_discipline),
     created: response.created,
     deviceTimeCreatedAt: response.device_time_created_at,
     stravaId: response.strava_id,

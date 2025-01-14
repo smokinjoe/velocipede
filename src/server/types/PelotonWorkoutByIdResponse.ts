@@ -46,6 +46,8 @@ export type PelotonInstructor = {
   default_cue_delay: number;
 };
 
+export type PelotonRideBase = PelotonRide | PelotonWalk;
+
 export type PelotonRide = {
   instructor: PelotonInstructor;
   content_availability: string;
@@ -139,11 +141,28 @@ export type PelotonRide = {
   }>;
 };
 
+/**
+ * TODO: Figure out how to handle the expected constant values of id and name
+ */
+export type PelotonWalk = {
+  // id: "00000000000000000000000000000000";
+  id: string;
+  is_archived: boolean;
+  title: string;
+  scheduled_start_time: number;
+  duration: number;
+  instructor: {
+    // name: "JUST WALK";
+    name: string;
+    image_url: string;
+  };
+};
+
 export type PelotonWorkoutByIdResponse = {
   created_at: number;
   device_type: string;
   end_time: number;
-  fitness_discipline: string;
+  fitness_discipline: "cycling" | "walking";
   has_pedaling_metrics: boolean;
   has_leaderboard_metrics: boolean;
   id: string;
@@ -168,7 +187,7 @@ export type PelotonWorkoutByIdResponse = {
   total_music_audio_buffer_seconds: null | number; // TODO: not sure about number
   service_id: null | string; // TODO: not sure about string
 
-  ride: PelotonRide;
+  ride: PelotonRide | PelotonWalk;
 
   created: number;
   device_time_created_at: number;

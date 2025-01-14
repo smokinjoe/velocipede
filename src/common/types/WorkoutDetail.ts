@@ -46,7 +46,10 @@ export type Instructor = {
   defaultCueDelay: number;
 };
 
-export type Ride = {
+// TODO: export type RideBase = Ride | Walk;
+export type RideBase = Cycle | Walk;
+
+export type Cycle = {
   instructor: Instructor;
   contentAvailability: string;
   contentAvailabilityLevel: string;
@@ -139,11 +142,27 @@ export type Ride = {
   }>;
 };
 
+export type Walk = {
+  // id: "00000000000000000000000000000000";
+  id: string;
+  isArchived: boolean;
+  title: string;
+  scheduledStartTime: number;
+  duration: number;
+  instructor: {
+    // name: "JUST WALK";
+    name: string;
+    imageUrl: string;
+  };
+};
+
 export type WorkoutDetail = {
+  ride: RideBase;
+
   createdAt: number;
   deviceType: string;
   endTime: number;
-  fitnessDiscipline: string;
+  fitnessDiscipline: "cycling" | "walking";
   hasPedalingMetrics: boolean;
   hasLeaderboardMetrics: boolean;
   id: string;
@@ -167,7 +186,6 @@ export type WorkoutDetail = {
   totalMusicAudioPlaySeconds: number | null;
   totalMusicAudioBufferSeconds: number | null;
   serviceId: string | null;
-  ride: Ride;
   created: number;
   deviceTimeCreatedAt: number;
   stravaId: string | null;
