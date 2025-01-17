@@ -15,6 +15,8 @@ import {
   PelotonWorkoutByIdResponse,
 } from "../types/PelotonWorkoutByIdResponse";
 
+import { formatDateToMMDDYYYY } from "@/common/utils/date";
+
 const instructorMapper = (
   pelotonInstructor: PelotonInstructor
 ): Instructor => ({
@@ -82,11 +84,11 @@ const rideMapper = (
     // I could create an `asCycle` and an `asWalk` to assert the type
     return cycleMapper(asPelotonCycle(pelotonRide));
   }
-  if (pelotonRide.instructor.name === "JUST WALK") {
+  if (fitnessDiscipline === "walking") {
     return walkMapper(asPelotonWalk(pelotonRide));
   }
 
-  throw new Error("Invalid ride type");
+  throw new Error("Invalid fitness discipline");
 };
 
 export const cycleMapper = (pelotonRide: PelotonCycle): Cycle => ({
@@ -204,8 +206,9 @@ export const workoutMapper = (
   response: PelotonWorkoutByIdResponse
 ): WorkoutDetail => {
   return {
-    createdAt: response.created_at,
+    createdAt: formatDateToMMDDYYYY(response.created_at),
     deviceType: response.device_type,
+    startTime: response.start_time,
     endTime: response.end_time,
     fitnessDiscipline: response.fitness_discipline,
     hasPedalingMetrics: response.has_pedaling_metrics,
@@ -217,7 +220,6 @@ export const workoutMapper = (
     name: response.name,
     pelotonId: response.peloton_id,
     platform: response.platform,
-    startTime: response.start_time,
     status: response.status,
     timezone: response.timezone,
     title: response.title,
