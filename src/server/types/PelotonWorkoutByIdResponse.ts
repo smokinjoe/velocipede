@@ -46,9 +46,10 @@ export type PelotonInstructor = {
   default_cue_delay: number;
 };
 
-export type PelotonRideBase = PelotonRide | PelotonWalk;
+export type PelotonRideBase = PelotonCycle | PelotonWalk;
 
-export type PelotonRide = {
+// TODO: Should I rename this to PelotonCycle?
+export type PelotonCycle = {
   instructor: PelotonInstructor;
   content_availability: string;
   content_availability_level: string;
@@ -187,7 +188,7 @@ export type PelotonWorkoutByIdResponse = {
   total_music_audio_buffer_seconds: null | number; // TODO: not sure about number
   service_id: null | string; // TODO: not sure about string
 
-  ride: PelotonRide | PelotonWalk;
+  ride: PelotonRideBase;
 
   created: number;
   device_time_created_at: number;
@@ -211,4 +212,18 @@ export type PelotonWorkoutByIdResponse = {
     ftp_workout_id: string;
   };
   device_type_display_name: string;
+};
+
+export const asPelotonCycle = (ride: PelotonRideBase): PelotonCycle => {
+  if ("fitnessDiscipline" in ride) {
+    throw new Error("Expected a Cycle ride");
+  }
+  return ride as PelotonCycle;
+};
+
+export const asPelotonWalk = (ride: PelotonRideBase): PelotonWalk => {
+  if (!("fitnessDiscipline" in ride)) {
+    throw new Error("Expected a Walk ride");
+  }
+  return ride as PelotonWalk;
 };

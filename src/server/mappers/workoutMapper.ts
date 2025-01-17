@@ -6,8 +6,10 @@ import {
   WorkoutDetail,
 } from "../../common/types/WorkoutDetail";
 import {
+  asPelotonCycle,
+  asPelotonWalk,
   PelotonInstructor,
-  PelotonRide,
+  PelotonCycle,
   PelotonRideBase,
   PelotonWalk,
   PelotonWorkoutByIdResponse,
@@ -77,16 +79,17 @@ const rideMapper = (
 ): RideBase => {
   if (fitnessDiscipline === "cycling") {
     // TODO: figure out some way to assert this - or can I use a generic?
-    return cycleMapper(pelotonRide as PelotonRide);
+    // I could create an `asCycle` and an `asWalk` to assert the type
+    return cycleMapper(asPelotonCycle(pelotonRide));
   }
-  if (fitnessDiscipline === "walking") {
-    return walkMapper(pelotonRide);
+  if (pelotonRide.instructor.name === "JUST WALK") {
+    return walkMapper(asPelotonWalk(pelotonRide));
   }
 
-  throw new Error("Invalid fitness discipline");
+  throw new Error("Invalid ride type");
 };
 
-export const cycleMapper = (pelotonRide: PelotonRide): Cycle => ({
+export const cycleMapper = (pelotonRide: PelotonCycle): Cycle => ({
   instructor: instructorMapper(pelotonRide.instructor),
   contentAvailability: pelotonRide.content_availability,
   contentAvailabilityLevel: pelotonRide.content_availability_level,

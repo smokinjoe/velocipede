@@ -209,3 +209,17 @@ export type WorkoutDetail = {
   };
   deviceTypeDisplayName: string;
 };
+
+export const asCycle = (ride: RideBase): Cycle => {
+  if ("fitnessDiscipline" in ride) {
+    throw new Error("Expected a Cycle ride");
+  }
+  return ride as Cycle;
+};
+
+export const asWalk = (ride: RideBase): Walk => {
+  if (!("fitnessDiscipline" in ride)) {
+    throw new Error("Expected a Walk ride");
+  }
+  return ride as Walk;
+};
