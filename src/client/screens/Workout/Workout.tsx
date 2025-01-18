@@ -1,6 +1,8 @@
+import { DataList } from "@/client/components/ui/DataList";
 import { Loading } from "@/client/components/ui/Loading";
 import { useWorkout } from "@/client/hooks/usePelotonQueries";
 import { useUserSession } from "@/client/hooks/useUserSession";
+import { asCycle } from "@/common/types/WorkoutDetail";
 import { useParams } from "react-router-dom";
 
 const Workout = () => {
@@ -25,11 +27,15 @@ const Workout = () => {
     cycling: "cycling",
   };
 
+  const renderCycle = () => {
+    return <DataList data={asCycle(data.ride).instructor.descriptors} />;
+  };
+
   return (
     <>
       <div className="text-3xl col-span-12">Workout</div>
       <div className="text-xl col-span-12">Workout ID: {id}</div>
-      <div className="col-span-12">{JSON.stringify(data)}</div>
+      <div className="col-span-12">{renderCycle()}</div>
     </>
   );
 };

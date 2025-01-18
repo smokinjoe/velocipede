@@ -1,5 +1,5 @@
 type DataListProps = {
-  data: Record<string, string | number>;
+  data: Record<string, string | number | boolean | Array<string | number>>;
   rowTitles?: Record<string, string>;
 };
 

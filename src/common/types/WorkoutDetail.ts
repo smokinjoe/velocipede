@@ -1,68 +1,74 @@
 export type Instructor = {
   id: string;
+  userId: string;
 
   /**
    * Descriptors
    */
-  bio: string;
-  shortBio: string;
-  coachType: string;
+  descriptors: {
+    bio: string;
+    shortBio: string;
+    coachType: string;
 
-  quote: string;
-  username: string;
-  name: string;
-  firstName: string;
-  lastName: string;
+    quote: string;
+    username: string;
+    name: string;
+    firstName: string;
+    lastName: string;
 
-  featuredProfile: boolean;
+    featuredProfile: boolean;
 
-  isActive: boolean;
-  isVisible: boolean;
+    fitnessDisciplines: string[];
+
+    isActive: boolean;
+    isVisible: boolean;
+  };
 
   /**
    * Image related
    */
-  aboutImageUrl: string;
-  imageUrl: string;
-  webInstructorListGifImageUrl: string | null;
-  instructorHeroImageUrl: string;
-  workoutShareImages: Array<{
-    fitnessDiscipline: string;
+  media: {
+    aboutImageUrl: string;
     imageUrl: string;
-  }>;
+    webInstructorListGifImageUrl: string | null;
+    instructorHeroImageUrl: string;
+    workoutShareImages: Array<{
+      fitnessDiscipline: string;
+      imageUrl: string;
+    }>;
 
-  background: string;
+    background: string;
+    lifeStyleImageUrl: string;
 
-  orderedQAndAs: Array<string[]>;
-  userId: string;
-  lifeStyleImageUrl: string;
-  bikeInstructorListDisplayImageUrl: string | null;
-  webInstructorListDisplayImageUrl: string;
-  iosInstructorListDisplayImageUrl: string;
-  fitnessDisciplines: string[];
+    bikeInstructorListDisplayImageUrl: string | null;
+    webInstructorListDisplayImageUrl: string;
+    iosInstructorListDisplayImageUrl: string;
+  };
 
   /**
    * Investigate
    */
-  instagramProfile: string;
-  stravaProfile: string;
-  twitterProfile: string;
-  facebookFanPage: string;
-  musicBio: string;
-  spotifyPlaylistUri: string;
+  // instagramProfile: string;
+  // stravaProfile: string;
+  // twitterProfile: string;
+  // facebookFanPage: string;
+  // musicBio: string;
+  // spotifyPlaylistUri: string;
 
-  defaultCrossFade: number;
-  defaultCueDelay: number;
-  jumbotronUrl: string | null;
-  jumbotronUrlDark: string;
-  jumbotronUrlIos: string;
+  // orderedQAndAs: Array<string[]>;
 
-  isFilterable: boolean;
-  isInstructorGroup: boolean;
-  individualInstructorIds: string[];
-  isAnnounced: boolean;
-  listOrder: number;
-  filmLink: string;
+  // defaultCrossFade: number;
+  // defaultCueDelay: number;
+  // jumbotronUrl: string | null;
+  // jumbotronUrlDark: string;
+  // jumbotronUrlIos: string;
+
+  // isFilterable: boolean;
+  // isInstructorGroup: boolean;
+  // individualInstructorIds: string[];
+  // isAnnounced: boolean;
+  // listOrder: number;
+  // filmLink: string;
 
   /**
    * Not important
@@ -80,130 +86,128 @@ export type Cycle = {
   /**
    * Descriptors
    */
-  title: string;
-  description: string;
-  isExplicit: boolean;
-  explicitRating: number;
+  descriptors: {
+    title: string;
+    description: string;
+    isExplicit: boolean;
+    explicitRating: number;
 
-  length: number;
-  originalAirTime: number;
-  scheduledStartTime: number;
-  isFixedDistance: boolean;
-  isOutdoor: boolean;
-  classTypeIds: string[];
-  equipmentIds: string[];
-  equipmentTags: string[];
+    length: number;
+    originalAirTime: number;
+    scheduledStartTime: number;
+    isFixedDistance: boolean;
+    isOutdoor: boolean;
+    classTypeIds: string[];
+    equipmentIds: string[];
+    equipmentTags: string[];
 
-  imageUrl: string;
-  extraImages: string[];
+    imageUrl: string;
+    extraImages: string[];
 
-  fitnessDiscipline: string;
-  fitnessDisciplineDisplayName: string;
+    fitnessDiscipline: string;
+    fitnessDisciplineDisplayName: string;
 
-  location: string;
+    location: string;
 
-  isArchived: boolean;
+    isArchived: boolean;
+  };
 
   /**
    * Stats
    */
-  rating: number;
-  totalRatings: number;
-  totalWorkouts: number;
-  overallRatingAvg: number;
-  overallRatingCount: number;
-  pedalingStartOffset: number;
-  pedalingEndOffset: number;
-  pedalingDuration: number;
+  stats: {
+    rating: number;
+    totalRatings: number;
+    totalWorkouts: number;
+    overallRatingAvg: number;
+    overallRatingCount: number;
+    pedalingStartOffset: number;
+    pedalingEndOffset: number;
+    pedalingDuration: number;
 
-  distance: number | null;
-  distanceUnit: string | null;
-  distanceDisplayValue: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    distanceDisplayValue: string | null;
 
-  classAvgFollowAlongScore: number;
+    classAvgFollowAlongScore: number;
 
-  difficultyEstimate: number;
-  overallEstimate: number;
-  difficultyRatingAvg: number;
-  difficultyRatingCount: number;
-  difficultyLevel: number | null;
+    difficultyEstimate: number;
+    overallEstimate: number;
+    difficultyRatingAvg: number;
+    difficultyRatingCount: number;
+    difficultyLevel: number | null;
 
-  muscleGroupScore: Array<{
-    muscleGroup: string;
-    score: number;
-    percentage: number;
-    bucket: number;
-    displayName: string;
-  }>;
+    muscleGroupScore: Array<{
+      muscleGroup: string;
+      score: number;
+      percentage: number;
+      bucket: number;
+      displayName: string;
+    }>;
 
-  duration: number;
-  hasPedalingMetrics: boolean;
-  metrics: string[];
+    duration: number;
+    hasPedalingMetrics: boolean;
+    metrics: string[];
 
-  individualInstructorIds: string[];
+    individualInstructorIds: string[];
+  };
 
   /**
    * Hold onto these
    */
-  language: string;
-  originLocale: string;
-  liveStreamId: string;
-  liveStreamUrl: string | null;
-
-  isDynamicVideoEligible: boolean;
-  dynamicVideoRecordedSpeedInMph: number;
-  sampleVodStreamUrl: string | null;
-  samplePreviewStreamUrl: string | null;
+  // language: string;
+  // originLocale: string;
+  // liveStreamId: string;
+  // liveStreamUrl: string | null;
+  // isDynamicVideoEligible: boolean;
+  // dynamicVideoRecordedSpeedInMph: number;
+  // sampleVodStreamUrl: string | null;
+  // samplePreviewStreamUrl: string | null;
 
   /**
    * Investigate
    */
-  totalInProgressWorkouts: number;
-  homePelotonId: string;
-
-  contentProvider: string;
-  contentFormat: string;
-
-  seriesId: string;
-  studioPelotonId: string;
-
-  rideTypeId: string;
-  rideTypeIds: string[];
-  flags: string[];
-
-  thumbnailTitle: string | null;
-  thumbnailLocation: string | null;
+  // totalInProgressWorkouts: number;
+  // homePelotonId: string;
+  // contentProvider: string;
+  // contentFormat: string;
+  // seriesId: string;
+  // studioPelotonId: string;
+  // rideTypeId: string;
+  // rideTypeIds: string[];
+  // flags: string[];
+  // thumbnailTitle: string | null;
+  // thumbnailLocation: string | null;
 
   /**
    * Not sure if important
    */
-
-  vodStreamUrl: string | null;
-  vodStreamId: string;
+  // vodStreamUrl: string | null;
+  // vodStreamId: string;
 
   /**
    * Not important
    */
-  contentAvailability: string;
-  contentAvailabilityLevel: string;
-  availability: {
-    isAvailable: boolean;
-    reason: string | null;
-  };
-  userCaptionLocales: string[];
-  hasClosedCaptions: boolean;
-  captions: string[];
-  hasTreadPaceTarget: boolean;
-  joinTokens: {
-    onDemand: string;
-  };
-  soldOut: boolean;
-  freeForLimitedTime: boolean;
-  isLimitedRide: boolean;
-  excludedPlatforms: string[];
-  isClosedCaptionShown: boolean;
-  hasFreeMode: boolean;
-  isLiveInStudioOnly: boolean;
+  // contentAvailability: string;
+  // contentAvailabilityLevel: string;
+  // availability: {
+  //   isAvailable: boolean;
+  //   reason: string | null;
+  // };
+  // userCaptionLocales: string[];
+  // hasClosedCaptions: boolean;
+  // captions: string[];
+  // hasTreadPaceTarget: boolean;
+  // joinTokens: {
+  //   onDemand: string;
+  // };
+  // soldOut: boolean;
+  // freeForLimitedTime: boolean;
+  // isLimitedRide: boolean;
+  // excludedPlatforms: string[];
+  // isClosedCaptionShown: boolean;
+  // hasFreeMode: boolean;
+  // isLiveInStudioOnly: boolean;
 };
 
 export type Walk = {
@@ -226,69 +230,74 @@ export type WorkoutDetail = {
   userId: string;
 
   ride: RideBase;
-  fitnessDiscipline: "cycling" | "walking";
 
-  name: string;
-  title: string | null;
+  descriptors: {
+    fitnessDiscipline: "cycling" | "walking";
 
-  createdAt: string;
-  created: number;
-  endTime: number;
-  startTime: number;
+    name: string;
+    title: string | null;
 
-  deviceType: string;
-  deviceTypeDisplayName: string;
-  platform: string;
-  status: string; // "COMPLETE"
-  metricsType: string | null; // Appears to be null when walk
-  workoutType: string;
+    createdAt: string;
+    created: number;
+    endTime: number;
+    startTime: number;
 
-  hasLeaderboardMetrics: boolean;
-  leaderboardRank: number;
-  totalLeaderboardUsers: number;
-  isTotalWorkPersonalRecord: boolean;
+    deviceType: string;
+    deviceTypeDisplayName: string;
+    platform: string;
+    status: string; // "COMPLETE"
+    metricsType: string | null; // Appears to be null when walk
+    workoutType: string;
+  };
 
-  hasPedalingMetrics: boolean;
+  stats: {
+    hasLeaderboardMetrics: boolean;
+    leaderboardRank: number;
+    totalLeaderboardUsers: number;
+    isTotalWorkPersonalRecord: boolean;
 
-  averageEffortScore: number | null;
-  totalWork: number;
-  totalHeartRateZoneDurations: number | null;
+    hasPedalingMetrics: boolean;
 
-  isOutdoor: boolean;
-  ftpInfo: {
-    ftp: number;
-    ftpSource: string;
-    ftpWorkoutId: string;
+    averageEffortScore: number | null;
+    totalWork: number;
+    totalHeartRateZoneDurations: number | null;
+
+    isOutdoor: boolean;
+    ftpInfo: {
+      ftp: number;
+      ftpSource: string;
+      ftpWorkoutId: string;
+    };
   };
 
   /**
    * Not important
    */
-  deviceTimeCreatedAt: number;
-  serviceId: string | null;
-  achievementTemplates: string[];
+  // deviceTimeCreatedAt: number;
+  // serviceId: string | null;
+  // achievementTemplates: string[];
 
-  totalVideoWatchTimeSeconds: number;
-  totalVideoBufferingSeconds: number;
-  v2TotalVideoWatchTimeSeconds: number;
-  v2TotalVideoBufferingSeconds: number;
-  totalMusicAudioPlaySeconds: number | null;
-  totalMusicAudioBufferSeconds: number | null;
+  // totalVideoWatchTimeSeconds: number;
+  // totalVideoBufferingSeconds: number;
+  // v2TotalVideoWatchTimeSeconds: number;
+  // v2TotalVideoBufferingSeconds: number;
+  // totalMusicAudioPlaySeconds: number | null;
+  // totalMusicAudioBufferSeconds: number | null;
 
-  isSkipIntroAvailable: boolean;
-  timezone: string;
-  stravaId: string | null;
-  fitbitId: string | null;
+  // isSkipIntroAvailable: boolean;
+  // timezone: string;
+  // stravaId: string | null;
+  // fitbitId: string | null;
 
   /**
    * Pause details, not important
    */
-  pauseTimeRemaining: number | null;
-  pauseTimeElapsed: number | null;
-  isPaused: boolean;
-  hasPaused: boolean;
-  isPauseAvailable: boolean;
-  pauseTimeLimit: number;
+  // pauseTimeRemaining: number | null;
+  // pauseTimeElapsed: number | null;
+  // isPaused: boolean;
+  // hasPaused: boolean;
+  // isPauseAvailable: boolean;
+  // pauseTimeLimit: number;
 };
 
 export const asCycle = (ride: RideBase): Cycle => {

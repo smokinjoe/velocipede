@@ -3,6 +3,7 @@ import { Me } from "@/common/types/Me";
 import { getInternalApiClient } from "./internalApiClient";
 import { WorkoutList } from "@/common/types/WorkoutList";
 import { Overview } from "@/common/types/Overview";
+import { WorkoutDetail } from "@/common/types/WorkoutDetail";
 
 export const login = async (username: string, password: string) => {
   const response = await getInternalApiClient().post(
@@ -47,7 +48,10 @@ export const workouts = async (
   return response.data;
 };
 
-export const workout = async (id?: string, sessionId?: string) => {
+export const workout = async (
+  id?: string,
+  sessionId?: string
+): Promise<WorkoutDetail> => {
   if (id === undefined) {
     throw new Error("Workout ID is required");
   }
