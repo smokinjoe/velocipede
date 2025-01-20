@@ -1,4 +1,3 @@
-import { DataList } from "@/client/components/ui/DataList";
 import { Instructor } from "@/common/types/WorkoutDetail";
 
 type InstructorProps = {
@@ -15,7 +14,7 @@ const InstructorCard = ({ instructor }: InstructorProps) => {
   return (
     <div className="instructor-card col-span-6 border-gray-400 border p-3 rounded-lg flex flex-col min-h-full grid grid-cols-6 gap-4">
       <img
-        className="block mx-auto self-end border shadow shadow-graay-200 col-span-3"
+        className="instructor-card__image block mx-auto self-end border shadow shadow-gray-200 col-span-3"
         src={imageUrl}
         alt={name}
       />
