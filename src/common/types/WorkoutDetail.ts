@@ -78,6 +78,32 @@ export type Instructor = {
 // TODO: export type RideBase = Ride | Walk;
 export type RideBase = Cycle | Walk;
 
+export type CycleDescriptors = {
+  title: string;
+  description: string;
+  isExplicit: boolean;
+  explicitRating: number;
+
+  length: number;
+  originalAirTime: number;
+  scheduledStartTime: number;
+  isFixedDistance: boolean;
+  isOutdoor: boolean;
+  classTypeIds: string[];
+  equipmentIds: string[];
+  equipmentTags: string[];
+
+  imageUrl: string;
+  extraImages: string[];
+
+  fitnessDiscipline: string;
+  fitnessDisciplineDisplayName: string;
+
+  location: string;
+
+  isArchived: boolean;
+};
+
 export type Cycle = {
   id: string;
   instructor: Instructor;
@@ -86,31 +112,7 @@ export type Cycle = {
   /**
    * Descriptors
    */
-  descriptors: {
-    title: string;
-    description: string;
-    isExplicit: boolean;
-    explicitRating: number;
-
-    length: number;
-    originalAirTime: number;
-    scheduledStartTime: number;
-    isFixedDistance: boolean;
-    isOutdoor: boolean;
-    classTypeIds: string[];
-    equipmentIds: string[];
-    equipmentTags: string[];
-
-    imageUrl: string;
-    extraImages: string[];
-
-    fitnessDiscipline: string;
-    fitnessDisciplineDisplayName: string;
-
-    location: string;
-
-    isArchived: boolean;
-  };
+  descriptors: CycleDescriptors;
 
   /**
    * Stats
