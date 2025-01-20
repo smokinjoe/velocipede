@@ -16,7 +16,7 @@ export type Instructor = {
     firstName: string;
     lastName: string;
 
-    featuredProfile: boolean;
+    isFeaturedProfile: string;
 
     fitnessDisciplines: string[];
 
@@ -232,10 +232,11 @@ export type WorkoutDetail = {
   ride: RideBase;
 
   descriptors: {
-    fitnessDiscipline: "cycling" | "walking";
+    // fitnessDiscipline: "cycling" | "walking";
+    fitnessDiscipline: string;
 
     name: string;
-    title: string | null;
+    title: string;
 
     createdAt: string;
     created: number;
@@ -246,7 +247,7 @@ export type WorkoutDetail = {
     deviceTypeDisplayName: string;
     platform: string;
     status: string; // "COMPLETE"
-    metricsType: string | null; // Appears to be null when walk
+    metricsType: string; // Appears to be null when walk
     workoutType: string;
   };
 
@@ -258,9 +259,9 @@ export type WorkoutDetail = {
 
     hasPedalingMetrics: boolean;
 
-    averageEffortScore: number | null;
+    averageEffortScore: number;
     totalWork: number;
-    totalHeartRateZoneDurations: number | null;
+    totalHeartRateZoneDurations: number;
 
     isOutdoor: boolean;
     ftpInfo: {

@@ -34,7 +34,9 @@ const instructorMapper = (
     lastName: pelotonInstructor.last_name,
     isActive: pelotonInstructor.is_active,
     isVisible: pelotonInstructor.is_visible,
-    featuredProfile: pelotonInstructor.featured_profile,
+    isFeaturedProfile: pelotonInstructor.featured_profile
+      ? "Featured"
+      : "Not Featured",
     fitnessDisciplines: pelotonInstructor.fitness_disciplines,
   },
 
@@ -171,7 +173,7 @@ export const workoutMapper = (
     descriptors: {
       fitnessDiscipline: response.fitness_discipline,
       name: response.name,
-      title: response.title,
+      title: response.title ?? "No Title",
 
       createdAt: formatDateToMMDDYYYY(response.created_at),
       created: response.created,
@@ -182,7 +184,7 @@ export const workoutMapper = (
       deviceTypeDisplayName: response.device_type_display_name,
       platform: response.platform,
       status: response.status,
-      metricsType: response.metrics_type,
+      metricsType: response.metrics_type ?? "None.",
       workoutType: response.workout_type,
     },
 
@@ -194,9 +196,10 @@ export const workoutMapper = (
 
       hasPedalingMetrics: response.has_pedaling_metrics,
 
-      averageEffortScore: response.average_effort_score,
+      averageEffortScore: response.average_effort_score ?? 0,
       totalWork: response.total_work,
-      totalHeartRateZoneDurations: response.total_heart_rate_zone_durations,
+      totalHeartRateZoneDurations:
+        response.total_heart_rate_zone_durations ?? 0,
 
       isOutdoor: response.is_outdoor,
       ftpInfo: {
