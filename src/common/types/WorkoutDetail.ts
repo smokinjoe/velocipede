@@ -314,7 +314,6 @@ export type WorkoutDetail = {
 
 export const asCycle = (ride: RideBase): Cycle => {
   if (ride.fitnessDiscipline !== "cycle") {
-    console.log(ride);
     throw new Error("Expected a Cycle ride");
   }
   return ride as Cycle;
