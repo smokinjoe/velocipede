@@ -57,7 +57,9 @@ const WorkoutContainer = () => {
     workoutDetails: "",
     name: descriptors.name,
     createdAt: descriptors.createdAt,
-    duration: `${(descriptors.endTime - descriptors.startTime) / 60} minutes`,
+    duration: `${((descriptors.endTime - descriptors.startTime) / 60).toFixed(
+      0
+    )} minutes`,
     device: descriptors.deviceTypeDisplayName,
     status: descriptors.status,
   };
