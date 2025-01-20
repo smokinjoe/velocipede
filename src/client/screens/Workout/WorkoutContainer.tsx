@@ -7,8 +7,8 @@ import { Loading } from "@/client/components/ui/Loading";
 import { useWorkout } from "@/client/hooks/usePelotonQueries";
 import { useUserSession } from "@/client/hooks/useUserSession";
 
-import Walk from "./Walk";
-import Cycle from "./Cycle";
+import WalkWorkout from "./WalkWorkout";
+import CycleWorkout from "./Cycle/CycleWorkout";
 import { DataList } from "@/client/components/ui/DataList";
 
 const WorkoutContainer = () => {
@@ -36,10 +36,10 @@ const WorkoutContainer = () => {
   const renderDiscipline = () => {
     switch (data.descriptors.fitnessDiscipline) {
       case fitnessDisciplines.walking:
-        return <Walk workout={asWalk(data.ride)} />;
+        return <WalkWorkout workout={asWalk(data.ride)} />;
         break;
       case fitnessDisciplines.cycling:
-        return <Cycle workout={asCycle(data.ride)} />;
+        return <CycleWorkout workout={asCycle(data.ride)} />;
         break;
       default:
         assertNever(
@@ -49,6 +49,22 @@ const WorkoutContainer = () => {
     }
   };
 
+  /**
+   * Description details
+   */
+  const { descriptors } = data;
+  const formattedDescriptors = {
+    workoutDetails: "",
+    name: descriptors.name,
+    createdAt: descriptors.createdAt,
+    duration: `${(descriptors.endTime - descriptors.startTime) / 60} minutes`,
+    device: descriptors.deviceTypeDisplayName,
+    status: descriptors.status,
+  };
+
+  /**
+   * Stats details
+   */
   const { stats } = data;
   const { ftpInfo } = stats;
   const {
@@ -56,9 +72,9 @@ const WorkoutContainer = () => {
     leaderboardRank,
     totalLeaderboardUsers,
     isTotalWorkPersonalRecord,
-    hasPedalingMetrics,
-    averageEffortScore,
-    totalHeartRateZoneDurations,
+    // hasPedalingMetrics,
+    // averageEffortScore,
+    // totalHeartRateZoneDurations,
     totalWork,
   } = stats;
 
@@ -66,21 +82,50 @@ const WorkoutContainer = () => {
     hasLeaderboardMetrics,
     leaderboardRank,
     totalLeaderboardUsers,
-    isTotalWorkPersonalRecord,
-    hasPedalingMetrics,
-    averageEffortScore,
-    totalHeartRateZoneDurations,
-    totalWork,
+    isTotalWorkPersonalRecord: isTotalWorkPersonalRecord ? "Yes" : "No",
+    // averageEffortScore,
+    // totalHeartRateZoneDurations,
+    totalWork: `${(totalWork / 1000).toFixed(2)} kJ`,
+    ftp: ftpInfo.ftp,
+  };
+
+  const statRowTitles = {
+    hasLeaderboardMetrics: "Record & Stat Details",
+    leaderboardRank: "Leaderboard Rank",
+    totalLeaderboardUsers: "Leaderboard Total",
+    isTotalWorkPersonalRecord: "Personal Record?",
+    totalWork: "Total Work",
+    ftp: "Average FTP",
   };
 
   return (
     <>
-      <div className="text-3xl col-span-12">Workout</div>
+      <div className="text-3xl col-span-12">Workout Details</div>
       <div className="text-xl col-span-12">Workout ID: {id}</div>
-      <div className="text-3xl col-span-12">Instructor</div>
-      <DataList data={data.descriptors} />
-      <DataList data={formattedStats} />
-      <DataList data={ftpInfo} />
+
+      {/* Simple description details */}
+      <DataList
+        rowTitles={{
+          createdAt: "Workout Date",
+          workoutDetails: "Workout Details",
+        }}
+        data={formattedDescriptors}
+        columns={6}
+        span={4}
+        titleWidth={2}
+        definitionWidth={2}
+      />
+
+      {/* Leaderboard and record details */}
+      <DataList
+        data={formattedStats}
+        rowTitles={statRowTitles}
+        columns={6}
+        span={4}
+        titleWidth={3}
+        definitionWidth={2}
+      />
+
       {renderDiscipline()}
     </>
   );
