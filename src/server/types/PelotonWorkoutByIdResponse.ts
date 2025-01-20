@@ -215,14 +215,14 @@ export type PelotonWorkoutByIdResponse = {
 };
 
 export const asPelotonCycle = (ride: PelotonRideBase): PelotonCycle => {
-  if ("fitnessDiscipline" in ride) {
+  if (!("fitness_discipline" in ride)) {
     throw new Error("Expected a Cycle ride");
   }
   return ride as PelotonCycle;
 };
 
 export const asPelotonWalk = (ride: PelotonRideBase): PelotonWalk => {
-  if (!("fitnessDiscipline" in ride)) {
+  if ("fitness_discipline" in ride) {
     throw new Error("Expected a Walk ride");
   }
   return ride as PelotonWalk;

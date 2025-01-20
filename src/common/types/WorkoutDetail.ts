@@ -110,6 +110,11 @@ export type Cycle = {
   instructorId: string;
 
   /**
+   * This is essential in determining the type of ride
+   */
+  fitnessDiscipline: "cycle";
+
+  /**
    * Descriptors
    */
   descriptors: CycleDescriptors;
@@ -219,6 +224,10 @@ export type Walk = {
   title: string;
   scheduledStartTime: number;
   duration: number;
+  /**
+   * This is essential in determining the type of ride
+   */
+  fitnessDiscipline: "walk";
   instructor: {
     // name: "JUST WALK";
     name: string;
@@ -304,14 +313,15 @@ export type WorkoutDetail = {
 };
 
 export const asCycle = (ride: RideBase): Cycle => {
-  if ("fitnessDiscipline" in ride) {
+  if (ride.fitnessDiscipline !== "cycle") {
+    console.log(ride);
     throw new Error("Expected a Cycle ride");
   }
   return ride as Cycle;
 };
 
 export const asWalk = (ride: RideBase): Walk => {
-  if (!("fitnessDiscipline" in ride)) {
+  if (ride.fitnessDiscipline !== "walk") {
     throw new Error("Expected a Walk ride");
   }
   return ride as Walk;

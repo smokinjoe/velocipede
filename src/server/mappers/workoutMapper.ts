@@ -85,6 +85,8 @@ export const cycleMapper = (pelotonRide: PelotonCycle): Cycle => ({
   instructor: instructorMapper(pelotonRide.instructor),
   instructorId: pelotonRide.instructor_id,
 
+  fitnessDiscipline: "cycle",
+
   descriptors: {
     classTypeIds: pelotonRide.class_type_ids,
     description: pelotonRide.description,
@@ -153,6 +155,7 @@ export const walkMapper = (response: PelotonWalk): Walk => {
     title: response.title,
     scheduledStartTime: response.scheduled_start_time,
     duration: response.duration,
+    fitnessDiscipline: "walk",
     instructor: response.instructor && {
       name: response.instructor.name,
       imageUrl: response.instructor.image_url,
