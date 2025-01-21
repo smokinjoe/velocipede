@@ -5,6 +5,7 @@ type DataListProps = {
   span?: number;
   titleWidth?: number;
   definitionWidth?: number;
+  title?: string;
 };
 
 export const DataList = ({
@@ -14,6 +15,7 @@ export const DataList = ({
   span = 12,
   titleWidth = 3,
   definitionWidth = 9,
+  title,
 }: DataListProps) => {
   const propertyKeys = Object.keys(data);
 
@@ -23,8 +25,15 @@ export const DataList = ({
 
   return (
     <div
-      className={`col-span-${span} bg-gray-100 border border-gray-800 rounded-lg`}
+      className={`col-span-${span} bg-gray-100 border border-gray-800 rounded-lg overflow-hidden`}
     >
+      {title ? (
+        <div
+          className={`col-span-${span} text-2xl font-bold px-5 py-5 border-b border-gray-800 bg-gray-400`}
+        >
+          {title}
+        </div>
+      ) : null}
       {propertyKeys.map((key, index) => {
         return (
           <div

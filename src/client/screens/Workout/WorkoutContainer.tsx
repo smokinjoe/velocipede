@@ -54,7 +54,6 @@ const WorkoutContainer = () => {
    */
   const { descriptors } = data;
   const formattedDescriptors = {
-    workoutDetails: "",
     name: descriptors.name,
     createdAt: descriptors.createdAt,
     duration: `${((descriptors.endTime - descriptors.startTime) / 60).toFixed(
@@ -70,7 +69,7 @@ const WorkoutContainer = () => {
   const { stats } = data;
   const { ftpInfo } = stats;
   const {
-    hasLeaderboardMetrics,
+    // hasLeaderboardMetrics,
     leaderboardRank,
     totalLeaderboardUsers,
     isTotalWorkPersonalRecord,
@@ -81,7 +80,7 @@ const WorkoutContainer = () => {
   } = stats;
 
   const formattedStats = {
-    hasLeaderboardMetrics,
+    // hasLeaderboardMetrics,
     leaderboardRank,
     totalLeaderboardUsers,
     isTotalWorkPersonalRecord: isTotalWorkPersonalRecord ? "Yes" : "No",
@@ -92,7 +91,6 @@ const WorkoutContainer = () => {
   };
 
   const statRowTitles = {
-    hasLeaderboardMetrics: "Record & Stat Details",
     leaderboardRank: "Leaderboard Rank",
     totalLeaderboardUsers: "Leaderboard Total",
     isTotalWorkPersonalRecord: "Personal Record?",
@@ -109,13 +107,13 @@ const WorkoutContainer = () => {
       <DataList
         rowTitles={{
           createdAt: "Workout Date",
-          workoutDetails: "Workout Details",
         }}
         data={formattedDescriptors}
         columns={6}
         span={4}
         titleWidth={2}
         definitionWidth={2}
+        title="Workout Details"
       />
 
       {/* Leaderboard and record details */}
@@ -126,6 +124,7 @@ const WorkoutContainer = () => {
         span={4}
         titleWidth={3}
         definitionWidth={2}
+        title="Leaderboard & Record Details"
       />
 
       {renderDiscipline()}

@@ -104,6 +104,56 @@ export type CycleDescriptors = {
   isArchived: boolean;
 };
 
+export type CycleStats = {
+  rating: number;
+  totalRatings: number;
+  totalWorkouts: number;
+  overallRatingAvg: number;
+  overallRatingCount: number;
+
+  /**
+   * All in seconds
+   */
+  pedalingStartOffset: number;
+  pedalingEndOffset: number;
+  pedalingDuration: number;
+
+  /**
+   * Is this always null?
+   */
+  distance: number | null;
+  distanceUnit: string | null;
+  distanceDisplayValue: string | null;
+
+  /**
+   * Appears to be zero quite a bit
+   */
+  classAvgFollowAlongScore: number;
+
+  difficultyEstimate: number;
+  overallEstimate: number;
+  difficultyRatingAvg: number;
+  difficultyRatingCount: number;
+  difficultyLevel: number | null;
+
+  /**
+   * This is static - a summary detail
+   */
+  muscleGroupScore: Array<{
+    muscleGroup: string;
+    score: number;
+    percentage: number;
+    bucket: number;
+    displayName: string;
+  }>;
+
+  duration: number;
+  hasPedalingMetrics: boolean;
+  metrics: string[];
+
+  individualInstructorIds: string[];
+};
+
 export type Cycle = {
   id: string;
   instructor: Instructor;
@@ -122,42 +172,7 @@ export type Cycle = {
   /**
    * Stats
    */
-  stats: {
-    rating: number;
-    totalRatings: number;
-    totalWorkouts: number;
-    overallRatingAvg: number;
-    overallRatingCount: number;
-    pedalingStartOffset: number;
-    pedalingEndOffset: number;
-    pedalingDuration: number;
-
-    distance: number | null;
-    distanceUnit: string | null;
-    distanceDisplayValue: string | null;
-
-    classAvgFollowAlongScore: number;
-
-    difficultyEstimate: number;
-    overallEstimate: number;
-    difficultyRatingAvg: number;
-    difficultyRatingCount: number;
-    difficultyLevel: number | null;
-
-    muscleGroupScore: Array<{
-      muscleGroup: string;
-      score: number;
-      percentage: number;
-      bucket: number;
-      displayName: string;
-    }>;
-
-    duration: number;
-    hasPedalingMetrics: boolean;
-    metrics: string[];
-
-    individualInstructorIds: string[];
-  };
+  stats: CycleStats;
 
   /**
    * Hold onto these
