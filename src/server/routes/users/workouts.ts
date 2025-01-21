@@ -23,7 +23,6 @@ router.get("/workouts", async (req, res) => {
 });
 
 router.get("/workouts/:id", async (req, res) => {
-  console.log("ID: ", req.params.id);
   const response = await fetch(
     `https://api.onepeloton.com/api/workout/${req.params.id}?joins=ride,ride.instructor`,
     {
