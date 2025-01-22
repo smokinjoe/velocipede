@@ -38,7 +38,7 @@ const WorkoutContainer = () => {
     switch (data.descriptors.fitnessDiscipline) {
       case fitnessDisciplines.walking:
         return <WalkWorkout workout={asWalk(data.ride)} />;
-        break;
+        return <WalkWorkout workout={asWalk(data.ride)} />;
       case fitnessDisciplines.cycling:
         return <CycleWorkout workout={asCycle(data.ride)} />;
         break;
