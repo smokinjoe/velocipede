@@ -1,11 +1,16 @@
-import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createMemoryRouter,
+  RouteObject,
+} from "react-router-dom";
 
-import { Layout } from "client/Layout";
-import { Login } from "client/screens/Login/Login";
-import { Me } from "client/screens/Me/Me";
-import { Workouts } from "client/screens/Workouts/Workouts";
+import Layout from "client/Layout";
+import Login from "client/screens/Login/Login";
+import Me from "client/screens/Me/Me";
+import Workouts from "client/screens/Workouts/Workouts";
+import WorkoutContainer from "./screens/Workout/WorkoutContainer";
 
-export const routes = [
+export const routes: RouteObject[] = [
   {
     element: <Layout />,
     children: [
@@ -16,6 +21,10 @@ export const routes = [
       {
         path: "/workouts",
         element: <Workouts />,
+      },
+      {
+        path: "/workouts/:id",
+        element: <WorkoutContainer />,
       },
       {
         path: "/login",

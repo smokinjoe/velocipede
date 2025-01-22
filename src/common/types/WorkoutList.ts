@@ -32,7 +32,7 @@ export type WorkoutData = {
   };
 };
 
-export type Workout = {
+export type WorkoutList = {
   workouts: WorkoutData[];
   limit: number;
   page: number;

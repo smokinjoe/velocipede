@@ -15,7 +15,7 @@ export const WorkoutCard = ({
 
   return (
     <div
-      className={`${fadedClass} workout-card col-span-3 border-gray-800 border p-3 rounded-lg`}
+      className={`${fadedClass} workout-card col-span-3 border-gray-400 border p-3 rounded-lg`}
     >
       <div className="workout-card-icon">
         <div className="font-bold text-2xl">{name}</div>

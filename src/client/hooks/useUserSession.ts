@@ -1,7 +1,10 @@
 import { useAtom } from "jotai";
 
-import { UserSession } from "../../common/types/UserSession";
-import { userSessionAtom, defaultUserSession } from "../atoms/userSession";
+import { UserSession } from "@/common/types/UserSession";
+import {
+  userSessionAtom,
+  defaultUserSession,
+} from "@/client/atoms/userSession";
 import { useEffect } from "react";
 
 const UserSessionKey = "peloton-user-key";

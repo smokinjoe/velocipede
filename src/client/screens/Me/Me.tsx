@@ -13,7 +13,7 @@ import { Overview } from "./Overview";
 
 const views = ["me", "overview"];
 
-export const Me = () => {
+const Me = () => {
   const { userSession } = useUserSession();
   const { isLoggedIn, sessionId, userId } = userSession;
 
@@ -58,3 +58,5 @@ export const Me = () => {
     </>
   );
 };
+
+export default Me;

@@ -5,7 +5,7 @@ import { useUserSession } from "client/hooks/useUserSession";
 import { Button } from "client/components/ui/Button";
 import { Loading } from "client/components/ui/Loading";
 
-export const Login = () => {
+const Login = () => {
   const { userSession, clearSession } = useUserSession();
 
   const form = useForm({
@@ -44,3 +44,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;
