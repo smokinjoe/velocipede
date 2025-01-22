@@ -2,7 +2,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { useUserSession } from "./useUserSession";
 
-import { login, me, overview, workouts } from "../services/pelotonService";
+import {
+  login,
+  me,
+  overview,
+  workout,
+  workouts,
+} from "../services/pelotonService";
 import { UserSession } from "../../common/types/UserSession";
 
 export const useLogin = () => {
@@ -53,5 +59,17 @@ export const useOverview = ({ isLoggedIn, sessionId, userId }: UserSession) => {
     queryKey: ["overview"],
     enabled: isLoggedIn,
     queryFn: async () => await overview(userId, sessionId),
+  });
+};
+
+export const useWorkout = ({
+  isLoggedIn,
+  sessionId,
+  id,
+}: UserSession & { id?: string }) => {
+  return useQuery({
+    queryKey: ["workout", id],
+    enabled: isLoggedIn,
+    queryFn: async () => await workout(id, sessionId),
   });
 };
