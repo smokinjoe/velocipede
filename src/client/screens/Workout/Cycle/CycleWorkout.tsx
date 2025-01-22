@@ -43,10 +43,10 @@ type CycleStatsCardProps = {
 
 const CycleStatsCard = ({ stats }: CycleStatsCardProps) => {
   return (
-    <div className="cycle-stats-card col-span-12 border-gray-400 border p-3 rounded-lg min-h-full grid grid-cols-12 gap-4">
+    <div className="cycle-stats-card col-span-12 border-gray-400 border p-3 rounded-lg min-h-full grid grid-cols-10 gap-4">
       <div className="font-bold text-2xl col-span-12">Workout Stats</div>
 
-      <div className="col-span-3 border p-4 rounded border-gray-400">
+      <div className="col-span-2 border p-4 rounded border-gray-400">
         <div className="font-bold text-xl">Ratings</div>
         <div>Rating: {stats.rating}</div>
         <div>Total Ratings: {stats.totalRatings}</div>
@@ -78,25 +78,13 @@ const CycleStatsCard = ({ stats }: CycleStatsCardProps) => {
       </div>
 
       {/* Move .toFixed() to mapper */}
-      <div className="col-span-3 border p-4 rounded border-gray-400">
+      <div className="col-span-2 border p-4 rounded border-gray-400">
         <div className="font-bold text-xl">Difficulty</div>
         <div>Difficulty Estimate: {stats.difficultyEstimate.toFixed(2)}</div>
         <div>Overall Estimate: {(stats.overallEstimate * 100).toFixed(2)}%</div>
         <div>Rating average: {stats.difficultyRatingAvg.toFixed(2)}</div>
         <div>Rating count: {stats.difficultyRatingCount.toFixed(2)}</div>
         <div>Difficulty level: {stats.difficultyLevel?.toFixed(2)}</div>
-      </div>
-
-      <div className="cycle-stats-card__information flex-grow mb-4 col-span-6">
-        <div className="font-bold text-2xl">Workout Stats</div>
-        <div className="mb-3">
-          <div className="font-bold">Difficulty Estimate:</div>
-          <div>{stats.difficultyEstimate}</div>
-        </div>
-        <div className="mb-3">
-          <div className="font-bold">Overall Estimate:</div>
-          <div>{stats.overallEstimate}</div>
-        </div>
       </div>
     </div>
   );
