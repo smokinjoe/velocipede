@@ -41,7 +41,7 @@ const WorkoutContainer = () => {
         return <WalkWorkout workout={asWalk(data.ride)} />;
       case fitnessDisciplines.cycling:
         return <CycleWorkout workout={asCycle(data.ride)} />;
-        break;
+        return <CycleWorkout workout={asCycle(data.ride)} />;
       default:
         assertNever(
           data.descriptors.fitnessDiscipline as never,
