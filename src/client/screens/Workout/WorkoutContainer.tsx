@@ -7,9 +7,10 @@ import { Loading } from "@/client/components/ui/Loading";
 import { useWorkout } from "@/client/hooks/usePelotonQueries";
 import { useUserSession } from "@/client/hooks/useUserSession";
 
-import WalkWorkout from "./WalkWorkout";
+import WalkWorkout from "./Walk/WalkWorkout";
 import CycleWorkout from "./Cycle/CycleWorkout";
-import { DataList } from "@/client/components/ui/DataList";
+import Descriptors from "./Descriptors";
+import Stats from "./Stats";
 
 const WorkoutContainer = () => {
   const { id } = useParams();
@@ -49,83 +50,13 @@ const WorkoutContainer = () => {
     }
   };
 
-  /**
-   * Description details
-   */
-  const { descriptors } = data;
-  const formattedDescriptors = {
-    name: descriptors.name,
-    createdAt: descriptors.createdAt,
-    duration: `${((descriptors.endTime - descriptors.startTime) / 60).toFixed(
-      0
-    )} minutes`,
-    device: descriptors.deviceTypeDisplayName,
-    status: descriptors.status,
-  };
-
-  /**
-   * Stats details
-   */
-  const { stats } = data;
-  const { ftpInfo } = stats;
-  const {
-    // hasLeaderboardMetrics,
-    leaderboardRank,
-    totalLeaderboardUsers,
-    isTotalWorkPersonalRecord,
-    // hasPedalingMetrics,
-    // averageEffortScore,
-    // totalHeartRateZoneDurations,
-    totalWork,
-  } = stats;
-
-  const formattedStats = {
-    // hasLeaderboardMetrics,
-    leaderboardRank,
-    totalLeaderboardUsers,
-    isTotalWorkPersonalRecord: isTotalWorkPersonalRecord ? "Yes" : "No",
-    // averageEffortScore,
-    // totalHeartRateZoneDurations,
-    totalWork: `${(totalWork / 1000).toFixed(2)} kJ`,
-    ftp: ftpInfo.ftp,
-  };
-
-  const statRowTitles = {
-    leaderboardRank: "Leaderboard Rank",
-    totalLeaderboardUsers: "Leaderboard Total",
-    isTotalWorkPersonalRecord: "Personal Record?",
-    totalWork: "Total Work",
-    ftp: "Average FTP",
-  };
-
   return (
     <>
       <div className="text-3xl col-span-12">Workout Details</div>
       <div className="text-xl col-span-12">Workout ID: {id}</div>
 
-      {/* Simple description details */}
-      <DataList
-        rowTitles={{
-          createdAt: "Workout Date",
-        }}
-        data={formattedDescriptors}
-        columns={6}
-        span={4}
-        titleWidth={2}
-        definitionWidth={2}
-        title="Workout Details"
-      />
-
-      {/* Leaderboard and record details */}
-      <DataList
-        data={formattedStats}
-        rowTitles={statRowTitles}
-        columns={6}
-        span={4}
-        titleWidth={3}
-        definitionWidth={2}
-        title="Leaderboard & Record Details"
-      />
+      <Descriptors descriptors={data.descriptors} />
+      <Stats stats={data.stats} />
 
       {renderDiscipline()}
     </>

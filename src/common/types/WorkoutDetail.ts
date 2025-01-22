@@ -250,6 +250,46 @@ export type Walk = {
   };
 };
 
+export type WorkoutDescriptors = {
+  // fitnessDiscipline: "cycling" | "walking";
+  fitnessDiscipline: string;
+
+  name: string;
+  title: string;
+
+  createdAt: string;
+  created: number;
+  endTime: number;
+  startTime: number;
+
+  deviceType: string;
+  deviceTypeDisplayName: string;
+  platform: string;
+  status: string; // "COMPLETE"
+  metricsType: string; // Appears to be null when walk
+  workoutType: string;
+};
+
+export type WorkoutStats = {
+  hasLeaderboardMetrics: boolean;
+  leaderboardRank: number;
+  totalLeaderboardUsers: number;
+  isTotalWorkPersonalRecord: boolean;
+
+  hasPedalingMetrics: boolean;
+
+  averageEffortScore: number;
+  totalWork: number;
+  totalHeartRateZoneDurations: number;
+
+  isOutdoor: boolean;
+  ftpInfo: {
+    ftp: number;
+    ftpSource: string;
+    ftpWorkoutId: string;
+  };
+};
+
 export type WorkoutDetail = {
   id: string;
   pelotonId: string;
@@ -257,45 +297,9 @@ export type WorkoutDetail = {
 
   ride: RideBase;
 
-  descriptors: {
-    // fitnessDiscipline: "cycling" | "walking";
-    fitnessDiscipline: string;
+  descriptors: WorkoutDescriptors;
 
-    name: string;
-    title: string;
-
-    createdAt: string;
-    created: number;
-    endTime: number;
-    startTime: number;
-
-    deviceType: string;
-    deviceTypeDisplayName: string;
-    platform: string;
-    status: string; // "COMPLETE"
-    metricsType: string; // Appears to be null when walk
-    workoutType: string;
-  };
-
-  stats: {
-    hasLeaderboardMetrics: boolean;
-    leaderboardRank: number;
-    totalLeaderboardUsers: number;
-    isTotalWorkPersonalRecord: boolean;
-
-    hasPedalingMetrics: boolean;
-
-    averageEffortScore: number;
-    totalWork: number;
-    totalHeartRateZoneDurations: number;
-
-    isOutdoor: boolean;
-    ftpInfo: {
-      ftp: number;
-      ftpSource: string;
-      ftpWorkoutId: string;
-    };
-  };
+  stats: WorkoutStats;
 
   /**
    * Not important
