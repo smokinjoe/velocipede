@@ -7,15 +7,18 @@ type DescriptorsProps = {
 };
 
 export const Descriptors = ({ descriptors }: DescriptorsProps) => {
+  const durationOfWorkout = `${(
+    (descriptors.endTime - descriptors.startTime) /
+    60
+  ).toFixed(0)} minutes`;
+
   /**
    * Description details
    */
   const formattedDescriptors = {
     name: descriptors.name,
     createdAt: descriptors.createdAt,
-    duration: `${((descriptors.endTime - descriptors.startTime) / 60).toFixed(
-      0
-    )} minutes`,
+    duration: durationOfWorkout,
     device: descriptors.deviceTypeDisplayName,
     status: descriptors.status,
   };
