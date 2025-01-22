@@ -38,14 +38,12 @@ const WorkoutContainer = () => {
     switch (data.descriptors.fitnessDiscipline) {
       case fitnessDisciplines.walking:
         return <WalkWorkout workout={asWalk(data.ride)} />;
-        return <WalkWorkout workout={asWalk(data.ride)} />;
       case fitnessDisciplines.cycling:
-        return <CycleWorkout workout={asCycle(data.ride)} />;
         return <CycleWorkout workout={asCycle(data.ride)} />;
       default:
         assertNever(
           data.descriptors.fitnessDiscipline as never,
-          `Invalid fitness discipline: ${data.descriptors.fitnessDiscipline}.`
+          `Invalid fitness discipline: ${data.descriptors.fitnessDiscipline} for workout id: ${id}.`
         );
     }
   };
