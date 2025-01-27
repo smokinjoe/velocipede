@@ -1,5 +1,17 @@
 import { WorkoutList, WorkoutData } from "../types/WorkoutList";
 
+export const mockWorkoutDataWithWalkRide = {
+  id: "mock-ride-id",
+  isArchived: false,
+  title: "mock-ride-title",
+  scheduledStartTime: 1234567890,
+  duration: 1234567890,
+  instructor: {
+    name: "mock-instructor-name",
+    imageUrl: "mock-instructor-image-url",
+  },
+};
+
 export const mockWorkoutData: WorkoutData = {
   id: "mock-workout-id",
   createdAt: 1234567890,
@@ -14,23 +26,13 @@ export const mockWorkoutData: WorkoutData = {
   totalWork: 123.45,
 
   deviceType: "android",
-  fitnessDiscipline: "cycling",
-  metricsType: "cycling",
+  fitnessDiscipline: "walking",
+  metricsType: null,
   pelotonId: "mock-peloton-id",
   platform: "android",
   title: "mock-title",
   workoutType: "class",
-  ride: {
-    id: "mock-ride-id",
-    isArchived: false,
-    title: "mock-ride-title",
-    scheduledStartTime: 1234567890,
-    duration: 1234567890,
-    instructor: {
-      name: "mock-instructor-name",
-      imageUrl: "mock-instructor-image-url",
-    },
-  },
+  ride: mockWorkoutDataWithWalkRide,
 };
 
 export const mockWorkoutList: WorkoutList = {

@@ -33,8 +33,8 @@ export const mockPelotonBaseWorkoutDataResponse: PelotonBaseWorkoutDataResponse 
     is_splits_personal_record: true,
 
     device_type: "android",
-    fitness_discipline: "cycling",
-    metrics_type: "cycling",
+    fitness_discipline: "walking",
+    metrics_type: null,
     peloton_id: "mock-peloton-id",
     platform: "android",
     title: "mock-title",

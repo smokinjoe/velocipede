@@ -25,17 +25,19 @@ export const workoutDataMapper = (
     platform: workout.platform,
     title: workout.title,
     workoutType: workout.workout_type,
+    // TODO: This is only defined if fitness_discipline is "walking"
+    // However I need some better type definitions to handle this
     ride:
-      "ride" in workout && workout.ride !== undefined
+      workout.fitness_discipline === "walking" && workout?.ride
         ? {
-            id: workout.ride.id,
-            isArchived: workout.ride.is_archived,
-            title: workout.ride.title,
-            scheduledStartTime: workout.ride.scheduled_start_time,
-            duration: workout.ride.duration,
+            id: workout?.ride?.id,
+            isArchived: workout?.ride?.is_archived,
+            title: workout?.ride?.title,
+            scheduledStartTime: workout?.ride?.scheduled_start_time,
+            duration: workout?.ride?.duration,
             instructor: {
-              name: workout.ride.instructor.name,
-              imageUrl: workout.ride.instructor.image_url,
+              name: workout?.ride?.instructor.name,
+              imageUrl: workout?.ride?.instructor.image_url,
             },
           }
         : null,
