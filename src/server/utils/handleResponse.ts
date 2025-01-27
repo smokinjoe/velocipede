@@ -17,7 +17,8 @@ export const handleResponse = async <APIData, VeloData>(
     const error = jsonData as PelotonError;
     const ErrorConstructor = errorMap.get(error.status) ?? VelocipedeError;
     const responseError = new ErrorConstructor(error.message);
-    response.status(apiResponse.status).send({
+    response.status(apiResponse.status);
+    response.send({
       error: {
         ...responseError,
         // Not entirely sure why I have to explicitly include this message property
