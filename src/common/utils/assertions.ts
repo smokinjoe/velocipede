@@ -10,6 +10,6 @@ function handleError(
 /**
  * Use this in case blocks where a default: should never be accessed
  */
-export function assertNever<T>(value: never, error?: AssertError): never {
+export function assertNever(value: never, error?: AssertError): never {
   handleError(`"${value}" should never happen in this context`, error);
 }

@@ -251,8 +251,7 @@ export type Walk = {
 };
 
 export type WorkoutDescriptors = {
-  // fitnessDiscipline: "cycling" | "walking";
-  fitnessDiscipline: string;
+  fitnessDiscipline: "cycling" | "walking";
 
   name: string;
   title: string;

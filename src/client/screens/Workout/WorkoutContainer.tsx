@@ -26,23 +26,15 @@ const WorkoutContainer = () => {
     return <div>There was an error fetching your data</div>;
   }
 
-  /**
-   * Provide a different view based on fitnessDiscipline
-   */
-  const fitnessDisciplines = {
-    walking: "walking",
-    cycling: "cycling",
-  };
-
-  const renderDiscipline = () => {
-    switch (data.descriptors.fitnessDiscipline) {
-      case fitnessDisciplines.walking:
+  const renderDiscipline = (discipline: "walking" | "cycling") => {
+    switch (discipline) {
+      case "walking":
         return <WalkWorkout workout={asWalk(data.ride)} />;
-      case fitnessDisciplines.cycling:
+      case "cycling":
         return <CycleWorkout workout={asCycle(data.ride)} />;
       default:
         assertNever(
-          data.descriptors.fitnessDiscipline as never,
+          discipline,
           `Invalid fitness discipline: ${data.descriptors.fitnessDiscipline} for workout id: ${id}.`
         );
     }
@@ -56,7 +48,7 @@ const WorkoutContainer = () => {
       <Descriptors descriptors={data.descriptors} />
       <Stats stats={data.stats} />
 
-      {renderDiscipline()}
+      {renderDiscipline(data.descriptors.fitnessDiscipline)}
     </>
   );
 };
