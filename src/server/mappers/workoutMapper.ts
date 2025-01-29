@@ -15,7 +15,7 @@ import {
   PelotonWorkoutByIdResponse,
 } from "../types/PelotonWorkoutByIdResponse";
 
-import { formatDateToMMDDYYYY } from "../../common/utils/date";
+import { formatMsToMMDDYYY } from "../../common/utils/date";
 
 const instructorMapper = (
   pelotonInstructor: PelotonInstructor
@@ -178,7 +178,7 @@ export const workoutMapper = (
       name: response.name,
       title: response.title ?? "No Title",
 
-      createdAt: formatDateToMMDDYYYY(response.created_at),
+      createdAt: formatMsToMMDDYYY(response.created_at),
       created: response.created,
       endTime: response.end_time,
       startTime: response.start_time,

@@ -1,5 +1,5 @@
 import {
-  formatDateToMMDDYYYY,
+  formatMsToMMDDYYY,
   formatDateStringToMMDDYYYY,
 } from "../../common/utils/date";
 import {
@@ -60,7 +60,7 @@ export const overviewMapper = (response: PelotonOverviewResponse): Overview => {
     streaks: {
       currentWeekly: response.streaks.current_weekly,
       bestWeekly: response.streaks.best_weekly,
-      startDateOfCurrentWeekly: formatDateToMMDDYYYY(
+      startDateOfCurrentWeekly: formatMsToMMDDYYY(
         response.streaks.start_date_of_current_weekly
       ),
     },

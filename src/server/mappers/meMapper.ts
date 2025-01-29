@@ -8,7 +8,7 @@ import {
   WorkoutCount,
   WorkoutMetrics,
 } from "../../common/types/Me";
-import { formatDateToMMDDYYYY } from "../../common/utils/date";
+import { formatMsToMMDDYYY } from "../../common/utils/date";
 
 const mapUserDetails = (
   response: Pick<
@@ -29,7 +29,7 @@ const mapUserDetails = (
     imageUrl: response.image_url,
     name: response.name,
     email: response.email,
-    birthday: formatDateToMMDDYYYY(response.birthday),
+    birthday: formatMsToMMDDYYY(response.birthday),
     totalFollowers: response.total_followers,
     totalFollowing: response.total_following,
     weight: `${response.weight} lbs`,
