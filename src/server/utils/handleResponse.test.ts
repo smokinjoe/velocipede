@@ -152,7 +152,7 @@ describe("ErrorConstructor types", () => {
         innerError: undefined,
         message: "Unknown error",
         name: "VelocipedeError",
-        statusCode: 300,
+        statusCode: 500,
       },
     });
   });
