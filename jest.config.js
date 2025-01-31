@@ -1,5 +1,5 @@
-const config = {
-  testEnvironment: "node",
+export default {
+  testEnvironment: "jsdom",
   transform: {
     "^.+\\.(ts|tsx)?$": [
       "ts-jest",
@@ -7,11 +7,10 @@ const config = {
     ],
     "^.+\\.(js|jsx)$": "babel-jest",
   },
-  moduleDirectories: ["node_modules", "./src/"],
   moduleNameMapper: {
     "^@/common/(.*)$": "<rootDir>/src/common/$1",
     "^@/client/(.*)$": "<rootDir>/src/client/$1",
+    "^@/server/(.*)$": "<rootDir>/src/server/$1",
+    // Add more aliases as needed
   },
 };
-
-export default config;
