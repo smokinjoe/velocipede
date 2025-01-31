@@ -7,12 +7,12 @@
     "module": "ESNext",
     "skipLibCheck": true,
     // "baseUrl": ".",
-    // "paths": {
-    //   "@/*": ["./src/*"],
-    //   "client/*": ["./src/client/*"],
-    //   "server/*": ["./src/server/*"],
-    //   "common/*": ["./src/common/*"]
-    // },
+    "paths": {
+      "@/*": ["./src/*"]
+      //   "client/*": ["./src/client/*"],
+      //   "server/*": ["./src/server/*"],
+      //   "common/*": ["./src/common/*"]
+    },
     /* Bundler mode */
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,

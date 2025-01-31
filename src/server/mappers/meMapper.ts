@@ -1,14 +1,14 @@
 import {
   PelotonMeResponse,
   PelotonWorkoutCount,
-} from "../types/PelotonMeResponse";
+} from "@/server/types/PelotonMeResponse";
 import {
   Me,
   UserDetails,
   WorkoutCount,
   WorkoutMetrics,
-} from "../../common/types/Me";
-import { formatMsToMMDDYYY } from "../../common/utils/date";
+} from "@/common/types/Me";
+import { formatMsToMMDDYYY } from "@/common/utils/date";
 
 const mapUserDetails = (
   response: Pick<

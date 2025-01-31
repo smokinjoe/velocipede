@@ -1,9 +1,9 @@
 import { useForm } from "@mantine/form";
 
-import { useLogin } from "client/hooks/usePelotonQueries";
-import { useUserSession } from "client/hooks/useUserSession";
-import { Button } from "client/components/ui/Button";
-import { Loading } from "client/components/ui/Loading";
+import { useLogin } from "@/client/hooks/usePelotonQueries";
+import { useUserSession } from "@/client/hooks/useUserSession";
+import { Button } from "@/client/components/ui/Button";
+import { Loading } from "@/client/components/ui/Loading";
 
 const Login = () => {
   const { userSession, clearSession } = useUserSession();
