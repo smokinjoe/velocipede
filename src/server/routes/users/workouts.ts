@@ -1,7 +1,7 @@
 import express from "express";
-import { handleResponse } from "../../utils/handleResponse";
-import { workoutsMapper } from "../../mappers/workoutsMapper";
-import { workoutMapper } from "../../mappers/workoutMapper";
+import { handleResponse } from "@/server/utils/handleResponse";
+import { workoutsMapper } from "@/server/mappers/workoutsMapper";
+import { workoutMapper } from "@/server/mappers/workoutMapper";
 
 const router = express.Router();
 

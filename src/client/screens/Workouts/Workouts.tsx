@@ -7,7 +7,7 @@ import { PillNavigation } from "@/client/components/ui/PillNavigation/PillNaviga
 
 import { WorkoutsTable } from "./WorkoutsTable";
 import { WorkoutsSummary } from "./WorkoutsSummary";
-import { formatMsToMMDDYYY } from "@/common/utils/date";
+import { formatMsToMMDDYYYY } from "@/common/utils/date";
 
 import { Pagination, usePagination } from "@/client/components/ui/Table";
 
@@ -39,7 +39,7 @@ const Workouts = () => {
   // Peel out Workouts data
   // TODO: have this done at the mapper seam in the future
   const parsedWorkoutsData = workouts.map((workout) => {
-    const parsedCreatedAt = formatMsToMMDDYYY(workout.createdAt);
+    const parsedCreatedAt = formatMsToMMDDYYYY(workout.createdAt);
 
     return {
       id: workout.id,

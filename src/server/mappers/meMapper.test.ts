@@ -1,5 +1,5 @@
 import { mapMe } from "./meMapper";
-import { mockPelotonMeResponse } from "../__mocks__/mockPelotonMeResponse";
+import { mockPelotonMeResponse } from "@/server/__mocks__/mockPelotonMeResponse";
 
 test("that mapMe converts a PelotonMeResponse to a Me", () => {
   const response = mockPelotonMeResponse;

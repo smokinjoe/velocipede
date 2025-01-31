@@ -1,5 +1,5 @@
-import { mockPelotonOverviewResponse } from "../__mocks__/mockPelotonOverviewResponse";
-import { PelotonOverviewResponse } from "../types/PelotonOverviewResponse";
+import { mockPelotonOverviewResponse } from "@/server/__mocks__/mockPelotonOverviewResponse";
+import { PelotonOverviewResponse } from "@/server/types/PelotonOverviewResponse";
 import { overviewMapper } from "./overviewMapper";
 
 test("overviewMapper maps a PelotonOverResponse to Overview", () => {

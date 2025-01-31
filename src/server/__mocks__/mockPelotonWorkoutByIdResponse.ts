@@ -3,7 +3,7 @@ import {
   PelotonWalk,
   PelotonCycle,
   PelotonInstructor,
-} from "../types/PelotonWorkoutByIdResponse";
+} from "@/server/types/PelotonWorkoutByIdResponse";
 
 export const mockPelotonWalk: PelotonWalk = {
   id: "mock-id",

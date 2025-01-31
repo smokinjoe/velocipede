@@ -1,21 +1,21 @@
 import {
-  formatMsToMMDDYYY,
+  formatMsToMMDDYYYY,
   formatDateStringToMMDDYYYY,
-} from "../../common/utils/date";
+} from "@/common/utils/date";
 import {
   Achievement,
   Overview,
   PersonalRecord,
   Record,
   Workout,
-} from "../../common/types/Overview";
+} from "@/common/types/Overview";
 import {
   PelotonAchievement,
   PelotonOverviewResponse,
   PelotonOverviewWorkout,
   PelotonPersonalRecord,
   PelotonRecord,
-} from "../types/PelotonOverviewResponse";
+} from "@/server/types/PelotonOverviewResponse";
 
 const mapWorkout = (workout: PelotonOverviewWorkout): Workout => ({
   name: workout.name,
@@ -60,7 +60,7 @@ export const overviewMapper = (response: PelotonOverviewResponse): Overview => {
     streaks: {
       currentWeekly: response.streaks.current_weekly,
       bestWeekly: response.streaks.best_weekly,
-      startDateOfCurrentWeekly: formatMsToMMDDYYY(
+      startDateOfCurrentWeekly: formatMsToMMDDYYYY(
         response.streaks.start_date_of_current_weekly
       ),
     },

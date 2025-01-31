@@ -2,12 +2,12 @@ import {
   mockCycle,
   mockWalk,
   mockWorkoutDetail,
-} from "../../common/__mocks__/mockWorkoutDetail";
+} from "@/common/__mocks__/mockWorkoutDetail";
 import {
   mockPelotonWorkoutByIdResponse,
   mockPelotonWalk,
   mockPelotonCycle,
-} from "../__mocks__/mockPelotonWorkoutByIdResponse";
+} from "@/server/__mocks__/mockPelotonWorkoutByIdResponse";
 import { workoutMapper, cycleMapper, walkMapper } from "./workoutMapper";
 
 test("that we can map a PelotonWorkoutByIdResponse to WorkoutDetail", () => {

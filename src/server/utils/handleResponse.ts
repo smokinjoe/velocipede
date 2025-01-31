@@ -1,6 +1,6 @@
 import { Response as ExpressResponse } from "express";
-import { errorMap, VelocipedeError } from "../types/VelocipedeError";
-import { PelotonError } from "../types/PelotonError";
+import { errorMap, VelocipedeError } from "@/server/types/VelocipedeError";
+import { PelotonError } from "@/server/types/PelotonError";
 
 export const handleResponse = async <APIData, VeloData>(
   response: ExpressResponse,

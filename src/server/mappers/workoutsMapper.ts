@@ -1,8 +1,8 @@
 import {
   PelotonWorkoutResponse,
   PelotonBaseWorkoutDataResponse,
-} from "../types/PelotonWorkoutResponse";
-import { WorkoutList, WorkoutData } from "../../common/types/WorkoutList";
+} from "@/server/types/PelotonWorkoutResponse";
+import { WorkoutList, WorkoutData } from "@/common/types/WorkoutList";
 
 export const workoutDataMapper = (
   workout: PelotonBaseWorkoutDataResponse

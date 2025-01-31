@@ -1,7 +1,7 @@
 import {
   PelotonWorkoutResponse,
   PelotonBaseWorkoutDataResponse,
-} from "../types/PelotonWorkoutResponse";
+} from "@/server/types/PelotonWorkoutResponse";
 
 export const mockPelotonBaseWorkoutDataResponse: PelotonBaseWorkoutDataResponse =
   {

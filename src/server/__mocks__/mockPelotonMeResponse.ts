@@ -1,4 +1,4 @@
-import { PelotonMeResponse } from "../types/PelotonMeResponse";
+import { PelotonMeResponse } from "@/server/types/PelotonMeResponse";
 
 export const mockPelotonMeResponse: PelotonMeResponse = {
   id: "guid",

@@ -6,7 +6,7 @@ const formatDateObject = (date: Date): string => {
   return parsedDate;
 };
 
-export const formatMsToMMDDYYY = (dateInSeconds: number): string => {
+export const formatMsToMMDDYYYY = (dateInSeconds: number): string => {
   const date = new Date(dateInSeconds * 1000);
   return formatDateObject(date);
 };

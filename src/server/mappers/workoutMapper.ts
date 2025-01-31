@@ -4,7 +4,7 @@ import {
   Walk,
   Cycle,
   WorkoutDetail,
-} from "../../common/types/WorkoutDetail";
+} from "@/common/types/WorkoutDetail";
 import {
   asPelotonCycle,
   asPelotonWalk,
@@ -13,9 +13,9 @@ import {
   PelotonRideBase,
   PelotonWalk,
   PelotonWorkoutByIdResponse,
-} from "../types/PelotonWorkoutByIdResponse";
+} from "@/server/types/PelotonWorkoutByIdResponse";
 
-import { formatMsToMMDDYYY } from "../../common/utils/date";
+import { formatMsToMMDDYYYY } from "@/common/utils/date";
 
 const instructorMapper = (
   pelotonInstructor: PelotonInstructor
@@ -178,7 +178,7 @@ export const workoutMapper = (
       name: response.name,
       title: response.title ?? "No Title",
 
-      createdAt: formatMsToMMDDYYY(response.created_at),
+      createdAt: formatMsToMMDDYYYY(response.created_at),
       created: response.created,
       endTime: response.end_time,
       startTime: response.start_time,
