@@ -3,10 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@/common/*": ["src/common/*"],
-      "@/client/*": ["src/client/*"],
-      "@/server/*": ["src/server/*"]
+      "@/*": ["src/*"]
     }
   },
   "references": [

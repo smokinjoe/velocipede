@@ -2,7 +2,6 @@ import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import tailwindcss from "tailwindcss";
-// import tsconfigPaths from "vite-tsconfig-paths";
 // import basicSsl from "@vitejs/plugin-basic-ssl";
 
 export default defineConfig({
@@ -15,9 +14,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      // client: path.resolve(__dirname, "src/client"),
-      // server: path.resolve(__dirname, "src/server"),
-      // common: path.resolve(__dirname, "src/common"),
     },
   },
 });
