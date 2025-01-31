@@ -19,12 +19,9 @@ test("useUserSession", () => {
 
   expect(result.current.userSession).toEqual({
     isLoggedIn: true,
-    user: {
-      id: "1",
-      userId: "userId",
-      cookies: "cookies",
-      sessionId: "sessionId",
-    },
+    userId: "userId",
+    cookies: "cookies",
+    sessionId: "sessionId",
   });
 
   act(() => {
