@@ -1,14 +1,14 @@
 import {
   PelotonMeResponse,
   PelotonWorkoutCount,
-} from "../types/PelotonMeResponse";
+} from "@/server/types/PelotonMeResponse";
 import {
   Me,
   UserDetails,
   WorkoutCount,
   WorkoutMetrics,
-} from "../../common/types/Me";
-import { formatMsToMMDDYYY } from "../../common/utils/date";
+} from "@/common/types/Me";
+import { formatMsToMMDDYYYY } from "@/common/utils/date";
 
 const mapUserDetails = (
   response: Pick<
@@ -29,7 +29,7 @@ const mapUserDetails = (
     imageUrl: response.image_url,
     name: response.name,
     email: response.email,
-    birthday: formatMsToMMDDYYY(response.birthday),
+    birthday: formatMsToMMDDYYYY(response.birthday),
     totalFollowers: response.total_followers,
     totalFollowing: response.total_following,
     weight: `${response.weight} lbs`,

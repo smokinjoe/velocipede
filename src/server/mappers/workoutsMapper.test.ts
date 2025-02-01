@@ -2,11 +2,11 @@ import { workoutsMapper, workoutDataMapper } from "./workoutsMapper";
 import {
   mockPelotonWorkoutResponse,
   mockPelotonBaseWorkoutDataResponse,
-} from "../__mocks__/mockPelotonWorkoutResponse";
+} from "@/server/__mocks__/mockPelotonWorkoutResponse";
 import {
   mockWorkoutList,
   mockWorkoutData,
-} from "../../common/__mocks__/mockWorkoutList";
+} from "@/common/__mocks__/mockWorkoutList";
 
 test("workoutsMapper should map PelotonWorkoutResponse to WorkoutList", () => {
   const mappedWorkouts = workoutsMapper(mockPelotonWorkoutResponse);

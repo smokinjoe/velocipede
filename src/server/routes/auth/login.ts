@@ -1,7 +1,7 @@
 import express from "express";
-import { handleResponse } from "../../utils/handleResponse";
-import { PelotonUserSession } from "../../types/PelotonUserSession";
-import { UserSession } from "../../../common/types/UserSession";
+import { handleResponse } from "@/server/utils/handleResponse";
+import { PelotonUserSession } from "@/server/types/PelotonUserSession";
+import { UserSession } from "@/common/types/UserSession";
 
 const router = express.Router();
 

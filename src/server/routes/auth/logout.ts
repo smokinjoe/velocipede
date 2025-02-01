@@ -1,5 +1,5 @@
 import express from "express";
-import { handleResponse } from "../../utils/handleResponse";
+import { handleResponse } from "@/server/utils/handleResponse";
 
 const router = express.Router();
 

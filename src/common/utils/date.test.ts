@@ -1,7 +1,7 @@
-import { formatDateStringToMMDDYYYY, formatMsToMMDDYYY } from "./date";
+import { formatDateStringToMMDDYYYY, formatMsToMMDDYYYY } from "./date";
 
-test("formatMsToMMDDYYY", () => {
-  expect(formatMsToMMDDYYY(1617312000)).toBe("04/01/2021");
+test("formatMsToMMDDYYYY", () => {
+  expect(formatMsToMMDDYYYY(1617312000)).toBe("04/01/2021");
 });
 
 test("formatDateStringToMMDDYYYY", () => {

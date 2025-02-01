@@ -1,6 +1,6 @@
 import express from "express";
-import { handleResponse } from "../../utils/handleResponse";
-import { overviewMapper } from "../../mappers/overviewMapper";
+import { handleResponse } from "@/server/utils/handleResponse";
+import { overviewMapper } from "@/server/mappers/overviewMapper";
 
 const router = express.Router();
 

@@ -6,14 +6,9 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-
     "paths": {
-      "@/*": ["./src/*"],
-      "client/*": ["./src/client/*"],
-      // "server/*": ["./src/server/*"],
-      "common/*": ["./src/common/*"]
+      "@/*": ["./src/*"]
     },
-
     /* Bundler mode */
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
@@ -21,7 +16,6 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

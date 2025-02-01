@@ -1,9 +1,9 @@
 import express from "express";
-import { handleResponse } from "../../utils/handleResponse";
+import { handleResponse } from "@/server/utils/handleResponse";
 
 const router = express.Router();
 
-router.post("/checkSession", async (req, res) => {
+router.post("/checkSession", async (_req, res) => {
   const response = await fetch(
     "https://api.onepeloton.com/auth/check_session",
     {

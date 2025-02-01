@@ -1,6 +1,6 @@
 import express from "express";
-import { handleResponse } from "../../utils/handleResponse";
-import { mapMe } from "../../mappers/meMapper";
+import { handleResponse } from "@/server/utils/handleResponse";
+import { mapMe } from "@/server/mappers/meMapper";
 
 const router = express.Router();
 

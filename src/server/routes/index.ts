@@ -1,6 +1,6 @@
 import express from "express";
 
-import { asyncHandler } from "../utils/asyncHandler";
+import { asyncHandler } from "@/server/utils/asyncHandler";
 
 import login from "./auth/login";
 import logout from "./auth/logout";

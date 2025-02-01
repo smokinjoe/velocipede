@@ -2,7 +2,7 @@ import { Express } from "express";
 import fs from "node:fs/promises";
 import { ViteDevServer } from "vite";
 
-import { getEnv } from "../utils/getEnv";
+import { getEnv } from "@/server/utils/getEnv";
 
 const environment = getEnv();
 

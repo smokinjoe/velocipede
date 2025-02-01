@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    // NOTE: The following paths aren't being respected, the actual
+    // aliasing is being done in the vite.config.ts file
+    "paths": {
+      "@/*": ["src/*"] // NOTE: Should this have a trailing /
+      // "@/*": ["./src/*"]
+      // "client/*": ["./src/client/*"]
+      //   //   "server/*": ["./src/server/*"],
+      //   "common/*": ["./src/common/*"]
+      // "^@/client/(.*)$": ["./src/client/$1"]
+      //   "@/client/*": ["./src/client/*"]
+    },
+
+    /* For testing */
+    "esModuleInterop": true,
+    "moduleResolution": "node"
+  },
+  "include": ["src"]
+}
