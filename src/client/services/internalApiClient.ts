@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from "axios";
+import { getBaseUrl } from "../utils/getEnv";
 
-const baseURL = import.meta.env.VITE_INTERNAL_API_BASEURL;
+const baseURL = getBaseUrl();
 
 type HttpClientOptions = {
   baseURL: string;

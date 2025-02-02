@@ -1,4 +1,3 @@
-// import { getPelotonApiClient } from "./pelotonApiClient";
 import { Me } from "@/common/types/Me";
 import { getInternalApiClient } from "./internalApiClient";
 import { WorkoutList } from "@/common/types/WorkoutList";
