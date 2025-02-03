@@ -21,7 +21,7 @@ export const Pagination = ({
   const end = start + count - 1;
 
   return (
-    <>
+    <div data-testid="pagination">
       <div className="flex flex-col col-span-12 items-center">
         <form className="max-w-52">
           <div className="flex items-center border-b border-slate-500 py-2">
@@ -111,6 +111,6 @@ export const Pagination = ({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
