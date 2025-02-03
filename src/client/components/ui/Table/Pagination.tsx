@@ -23,7 +23,7 @@ export const Pagination = ({
   return (
     <div data-testid="pagination">
       <div className="flex flex-col col-span-12 items-center">
-        <form className="max-w-52">
+        <form className="max-w-52" data-testid="limit-form">
           <div className="flex items-center border-b border-slate-500 py-2">
             <input
               className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -59,7 +59,10 @@ export const Pagination = ({
       </div>
 
       <div className="flex flex-col items-center col-span-12">
-        <span className="text-sm text-gray-700 dark:text-gray-400">
+        <span
+          className="text-sm text-gray-700 dark:text-gray-400"
+          data-testid="range"
+        >
           Showing <span className="font-semibold text-black-900">{start}</span>{" "}
           to <span className="font-semibold text-black-900">{end}</span> of{" "}
           <span className="font-semibold text-black-900">{total}</span> Entries
