@@ -3,7 +3,10 @@ export default {
   transform: {
     "^.+\\.(ts|tsx)?$": [
       "ts-jest",
-      { diagnostics: { ignoreCodes: ["TS151001"] } },
+      {
+        diagnostics: { ignoreCodes: ["TS151001"] },
+        tsconfig: "tsconfig.test.json",
+      },
     ],
     "^.+\\.(js|jsx)$": "babel-jest",
   },
