@@ -66,17 +66,17 @@ export const Table = ({ data, columnNames, cellOverrides }: TableProps) => {
     columnNames && columnNames[key] ? columnNames[key] : key
   );
 
-  /**
-   * Removed table-auto class from table
-   */
-
   return (
     <div className="relative shadow-lg rounded-lg flex flex-col overflow-hidden">
-      <table className="text-gray-500 dark:text-gray-400 shadow-mx text-left ">
+      <table
+        data-testid="table"
+        className="text-gray-500 dark:text-gray-400 shadow-mx text-left "
+      >
         <TableHeader keys={tableHeaderKeys} />
         <tbody>
           {data.map((row, index) => (
             <tr
+              data-testid="table-row"
               key={index}
               className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
             >
