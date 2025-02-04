@@ -7,6 +7,7 @@ import { Loading } from "@/client/components/ui/Loading";
 
 const Login = () => {
   const { userSession, clearSession } = useUserSession();
+  const { mutate: login, isPending } = useLogin();
 
   const form = useForm({
     mode: "uncontrolled",
@@ -15,8 +16,6 @@ const Login = () => {
       password: "",
     },
   });
-
-  const { mutate: login, isPending } = useLogin();
 
   if (isPending) {
     return <Loading />;
