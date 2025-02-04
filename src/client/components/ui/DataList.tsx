@@ -26,6 +26,7 @@ export const DataList = ({
   return (
     <div
       className={`col-span-${span} bg-gray-100 border border-gray-800 rounded-lg overflow-hidden`}
+      data-testid="data-list"
     >
       {title ? (
         <div
