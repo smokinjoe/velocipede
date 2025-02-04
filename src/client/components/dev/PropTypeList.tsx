@@ -26,12 +26,12 @@ export const PropTypeList = ({ data }: DataListProps) => {
       {propertyKeys.map((key, index) => {
         const parsedValue = parseValue(data[key]);
         return (
-          <>
-            <div key={index} className="col-span-5">
+          <div key={index} className="grid grid-cols-12 gap-2">
+            <div className="col-span-5">
               <div className="text-xl font-bold">{key}</div>
             </div>
             <div className="col-span-7">{parsedValue}</div>
-          </>
+          </div>
         );
       })}
     </>
