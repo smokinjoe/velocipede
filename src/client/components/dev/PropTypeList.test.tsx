@@ -13,7 +13,6 @@ afterAll(() => {
   console.error = consoleError;
 });
 
-// TEST: value types, string, number, boolean, array, object
 describe("PropTypeList", () => {
   const props = {
     data: {
