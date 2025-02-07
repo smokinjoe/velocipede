@@ -18,7 +18,7 @@ const Workouts = () => {
   const { userSession } = useUserSession();
   const { isLoggedIn, sessionId, userId } = userSession;
   const { page, limit } = usePagination();
-  const { data, isLoading } = useWorkouts({
+  const { data, isLoading, isError } = useWorkouts({
     isLoggedIn: isLoggedIn,
     userId,
     sessionId,
@@ -30,7 +30,7 @@ const Workouts = () => {
     return <Loading />;
   }
 
-  if (!data) {
+  if (!data || isError) {
     return <div>There was an error fetching your data</div>;
   }
 
@@ -72,7 +72,7 @@ const Workouts = () => {
   };
 
   return (
-    <>
+    <div data-testid="workouts">
       <PillNavigation views={views} selectedView={selectedView} />
 
       {selectedView === "workouts" ? (
@@ -80,7 +80,7 @@ const Workouts = () => {
       ) : (
         <WorkoutsSummary summary={data.summary} />
       )}
-    </>
+    </div>
   );
 };
 
