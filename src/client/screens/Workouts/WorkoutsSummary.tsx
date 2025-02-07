@@ -24,7 +24,7 @@ export const WorkoutsSummary = ({ summary }: WorkoutsSummaryProps) => {
   }
 
   return (
-    <div className="flex flex-col col-span-2">
+    <div className="flex flex-col col-span-2" data-testid="workouts-summary">
       <div className="text-3xl col-span-12">Monthly Summary</div>
       <Table data={monthlySummary} />
     </div>

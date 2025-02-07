@@ -32,7 +32,7 @@ const workoutsData = [
 describe("WorkoutsTable", () => {
   test("should render", () => {
     renderWithRouter(<WorkoutsTable workoutsData={workoutsData} />);
-    expect(screen.getByText("Workouts Data")).toBeInTheDocument();
+    expect(screen.getByTestId("workouts-table")).toBeInTheDocument();
   });
 
   test("should render the correct number of rows", () => {
