@@ -1,14 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { BrowserRouter } from "react-router-dom";
 
+import { renderWithRouter } from "@/client/utils/testHelpers";
 import { WorkoutsTable } from "./WorkoutsTable";
-
-const renderWithRouter = (component: JSX.Element) => {
-  return {
-    ...render(<BrowserRouter>{component}</BrowserRouter>),
-  };
-};
 
 const workoutsData = [
   {
