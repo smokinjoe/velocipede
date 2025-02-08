@@ -15,9 +15,9 @@ export const WorkoutMetrics = (props: WorkoutMetricsProps) => {
   };
 
   return (
-    <>
+    <div data-testid="workout-metrics">
       <div className="text-3xl font-bold col-span-12 mt-5">Workout Metrics</div>
       <DataList rowTitles={rowTitles} data={props} />
-    </>
+    </div>
   );
 };

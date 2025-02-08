@@ -39,23 +39,25 @@ const Me = () => {
   }
 
   return (
-    <>
+    <div data-testid="me" className="col-span-12">
       <PillNavigation views={views} selectedView={selectedView} />
 
       {selectedView === "me" ? (
         <>
-          <div className="text-5xl font-bold col-span-12">Me Data</div>
+          <div className="text-5xl font-bold col-span-12 mb-5">Me Data</div>
           <UserDetails {...data.userDetails} />
           <WorkoutMetrics {...data.workoutMetrics} />
           <WorkoutCounts workouts={data.workoutCounts} />
         </>
       ) : (
         <>
-          <div className="text-5xl font-bold col-span-12">Overview Data</div>
+          <div className="text-5xl font-bold col-span-12 mb-5">
+            Overview Data
+          </div>
           <Overview overview={overviewData} />
         </>
       )}
-    </>
+    </div>
   );
 };
 

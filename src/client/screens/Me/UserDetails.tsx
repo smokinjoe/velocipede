@@ -17,9 +17,9 @@ export const UserDetails = (props: UserDetailsProps) => {
   };
 
   return (
-    <>
+    <div data-testid="user-details">
       <div className="text-3xl font-bold col-span-12">User Details</div>
       <DataList rowTitles={rowTitles} data={props} />
-    </>
+    </div>
   );
 };

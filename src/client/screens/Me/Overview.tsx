@@ -55,10 +55,10 @@ export const Overview = ({ overview }: OverviewProps) => {
   };
 
   return (
-    <>
+    <div data-testid="overview" className="grid grid-cols-12 gap-4">
       {renderPersonalRecords()}
       {renderStreaks()}
       {renderAchievements()}
-    </>
+    </div>
   );
 };

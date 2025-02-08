@@ -16,6 +16,7 @@ export const WorkoutCard = ({
   return (
     <div
       className={`${fadedClass} workout-card col-span-3 border-gray-400 border p-3 rounded-lg`}
+      data-testid="workout-card"
     >
       <div className="workout-card-icon">
         <div className="font-bold text-2xl">{name}</div>
@@ -32,7 +33,10 @@ type WorkoutCountsProps = {
 
 export const WorkoutCounts = ({ workouts }: WorkoutCountsProps) => {
   return (
-    <div className="workout-counts col-span-12 grid grid-cols-12 gap-4 mt-5">
+    <div
+      className="workout-counts col-span-12 grid grid-cols-12 gap-4 mt-5"
+      data-testid="workout-counts"
+    >
       <div className="text-4xl font-bold col-span-12">Workout Counts</div>
 
       {workouts
