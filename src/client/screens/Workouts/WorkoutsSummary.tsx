@@ -24,9 +24,11 @@ export const WorkoutsSummary = ({ summary }: WorkoutsSummaryProps) => {
   }
 
   return (
-    <div className="flex flex-col col-span-2" data-testid="workouts-summary">
+    <div data-testid="workouts-summary grid grid-cols-12 gap-4">
       <div className="text-3xl col-span-12">Monthly Summary</div>
-      <Table data={monthlySummary} />
+      <div className="col-span-2">
+        <Table data={monthlySummary} />
+      </div>
     </div>
   );
 };

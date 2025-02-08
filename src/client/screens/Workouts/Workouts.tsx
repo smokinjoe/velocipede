@@ -72,7 +72,7 @@ const Workouts = () => {
   };
 
   return (
-    <div data-testid="workouts">
+    <div className="col-span-12" data-testid="workouts">
       <PillNavigation views={views} selectedView={selectedView} />
 
       {selectedView === "workouts" ? (
