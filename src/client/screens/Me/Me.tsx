@@ -19,12 +19,20 @@ const Me = () => {
 
   const selectedView = useSelectedView();
 
-  const { data, isLoading } = useMe({
+  const {
+    data,
+    isLoading,
+    isError: isMeError,
+  } = useMe({
     isLoggedIn: isLoggedIn,
     sessionId,
   });
 
-  const { data: overviewData, isLoading: overviewIsLoading } = useOverview({
+  const {
+    data: overviewData,
+    isLoading: overviewIsLoading,
+    isError: isOverviewError,
+  } = useOverview({
     isLoggedIn: isLoggedIn,
     sessionId,
     userId,
@@ -34,27 +42,37 @@ const Me = () => {
     return <Loading />;
   }
 
-  if (!data) {
-    return <div>There was an error fetching your data</div>;
-  }
+  const renderMe = () => {
+    if (!data || isMeError) {
+      return <div>There was an error fetching your Me data</div>;
+    }
+
+    return (
+      <>
+        <div className="text-5xl font-bold col-span-12 mb-5">Me Data</div>
+        <UserDetails {...data.userDetails} />
+        <WorkoutMetrics {...data.workoutMetrics} />
+        <WorkoutCounts workouts={data.workoutCounts} />
+      </>
+    );
+  };
 
   return (
     <div data-testid="me" className="col-span-12">
       <PillNavigation views={views} selectedView={selectedView} />
 
       {selectedView === "me" ? (
-        <>
-          <div className="text-5xl font-bold col-span-12 mb-5">Me Data</div>
-          <UserDetails {...data.userDetails} />
-          <WorkoutMetrics {...data.workoutMetrics} />
-          <WorkoutCounts workouts={data.workoutCounts} />
-        </>
+        renderMe()
       ) : (
         <>
           <div className="text-5xl font-bold col-span-12 mb-5">
             Overview Data
           </div>
-          <Overview overview={overviewData} />
+          {!overviewData || isOverviewError ? (
+            <div>There was an error fetching your Overview data</div>
+          ) : (
+            <Overview overview={overviewData} />
+          )}
         </>
       )}
     </div>

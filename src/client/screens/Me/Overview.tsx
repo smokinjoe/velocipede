@@ -25,7 +25,7 @@ export const Overview = ({ overview }: OverviewProps) => {
     };
 
     return (
-      <div className="col-span-8">
+      <div className="col-span-8" data-testid="personal-records">
         {overview.personalRecords.map((pr) => (
           <div key={pr.slug} className="flex flex-col">
             <div className="text-3xl font-bold mb-4">{pr.name} records</div>
@@ -43,7 +43,7 @@ export const Overview = ({ overview }: OverviewProps) => {
       startDateOfCurrentWeekly: "Start Date of Current Weekly",
     };
     return (
-      <div className="col-span-4">
+      <div className="col-span-4" data-testid="streaks">
         <div className="text-3xl font-bold mb-4">Streaks</div>
         <DataList data={overview.streaks} rowTitles={rowTitles} />
       </div>

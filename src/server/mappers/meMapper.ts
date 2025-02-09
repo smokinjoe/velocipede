@@ -32,6 +32,7 @@ const mapUserDetails = (
     birthday: formatMsToMMDDYYYY(response.birthday),
     totalFollowers: response.total_followers,
     totalFollowing: response.total_following,
+    // TODO: have this determined via heightUnit and weightUnit
     weight: `${response.weight} lbs`,
     height: `${response.height} inches`,
   };

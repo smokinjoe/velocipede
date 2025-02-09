@@ -30,7 +30,10 @@ type AchievementCardsProps = {
 
 export const AchievementCards = ({ achievements }: AchievementCardsProps) => {
   return (
-    <div className="achievement-cards col-span-12 grid grid-cols-12 gap-4 mt-5">
+    <div
+      className="achievement-cards col-span-12 grid grid-cols-12 gap-4 mt-5"
+      data-testid="achievements"
+    >
       {achievements.map((achievement) => (
         <AchievementCard key={achievement.id} {...achievement} />
       ))}
