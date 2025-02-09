@@ -23,8 +23,9 @@ export const WorkoutsSummary = ({ summary }: WorkoutsSummaryProps) => {
     });
   }
 
+  // TODO: Fix the col-span-2 not actually being applied as expected
   return (
-    <div data-testid="workouts-summary grid grid-cols-12 gap-4">
+    <div data-testid="workouts-summary">
       <div className="text-3xl col-span-12">Monthly Summary</div>
       <div className="col-span-2">
         <Table data={monthlySummary} />
