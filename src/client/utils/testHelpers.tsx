@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
   },
 });
 
-export const renderWithRouterAndQueryClient = (component: JSX.Element) => {
+export const renderWithRouterAndQueryClient = (component: JSX.Element, { initialEntries?: string}) => {
   return render(
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>

@@ -56,10 +56,6 @@ describe("Me", () => {
     jest.clearAllMocks();
   });
 
-  afterAll(() => {
-    jest.clearAllMocks();
-  });
-
   test("should render the me view", async () => {
     setupMockMeService();
     setupMockOverviewService();

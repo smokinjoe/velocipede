@@ -1,4 +1,4 @@
-import { CycleDescriptors } from "@/common/types/Cycle";
+import { CycleDescriptors } from "@/common/types/WorkoutDetail";
 
 type CycleSummaryCardProps = {
   details: CycleDescriptors;
